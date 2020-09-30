@@ -1,5 +1,5 @@
 # BPWAutomation
-Projeto base para automação de testes web com BDD usando Selenium e Cucumber.
+<h2>Projeto base para automação de testes web com BDD usando Selenium e Cucumber.</h2>
 
 <div class="corpo_mensagem">
   <p>
