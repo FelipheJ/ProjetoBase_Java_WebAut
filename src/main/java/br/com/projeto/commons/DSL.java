@@ -2,15 +2,14 @@ package br.com.projeto.commons;
 
 import java.util.List;
 import org.openqa.selenium.*;
-import br.com.projeto.bean.interfaces.DSL;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Dsl implements DSL {
+public class DSL implements br.com.projeto.bean.interfaces.IDSL {
 
     /* Construtores */
-    public Dsl(WebDriver driver) {
+    public DSL(WebDriver driver) {
         webDriver = driver;
         driverWait = new WebDriverWait(webDriver, 20);
     }

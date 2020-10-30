@@ -8,11 +8,11 @@ public class StepExecutor {
         try {
             method.invoke(instance, args);
         } catch (Exception ex) {
-
+            // Caso ocorra alguma exceção do método chamado ou da reflexão
         } catch (AssertionError ae) {
-            
+            // Caso falhe a validação do step
         } finally {
-
+            // Gerar evidencias
         }
     }
 }

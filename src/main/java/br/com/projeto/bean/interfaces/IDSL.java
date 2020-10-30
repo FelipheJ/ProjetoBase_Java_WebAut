@@ -6,7 +6,7 @@ import org.openqa.selenium.Keys;
 /**
  * Interface que contém as regras essenciais para a implementação da DSL.
  */
-public interface DSL {
+public interface IDSL {
 
     void limpar(By by);
     void clicar(By by);
