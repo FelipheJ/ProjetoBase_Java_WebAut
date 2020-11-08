@@ -29,7 +29,7 @@ public class StepExecutor {
      * @param args     - The arguments of the method (if there is).
      * @return the corresponding method or null if, and only if, method has not found.
      */
-    public static Method findMethod(String name, Object instance, Object... args) {
+    public static Method findMethod(Object instance, String name, Object... args) {
         Method m = null;
         List<Method> methodList = new ArrayList<>();
 
