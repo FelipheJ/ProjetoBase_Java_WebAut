@@ -36,20 +36,7 @@
             <version>3.141.59</version>
         </dependency>
 
-        <!-- APPIUM DEPENDENCIES -->
-        <dependency>
-            <groupId>io.appium</groupId>
-            <artifactId>java-client</artifactId>
-            <version>7.2.0</version>
-        </dependency>
-
-        <!-- WINIUM DEPENDENCIES --><!-- CUCUMBER DEPENDENCIES -->
-        <dependency>
-            <groupId>com.github.2gis.winium</groupId>
-            <artifactId>winium-webdriver</artifactId>
-            <version>0.1.0-1</version>
-        </dependency>
-
+        <!-- CUCUMBER DEPENDENCIES -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-gherkin</artifactId>
@@ -94,11 +81,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-core</artifactId>
-            <version>1.2.5</version>
-        </dependency><!-- FILEUTILS DEPENDENCIES -->
+        <!-- FILEUTILS DEPENDENCIES -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -136,7 +119,13 @@
             <version>2.9.10.6</version>
         </dependency>
 
-    </dependencies>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>3.0.6</version>
+            <type>pom</type>
+        </dependency>
 
+    </dependencies>
 
 </project>

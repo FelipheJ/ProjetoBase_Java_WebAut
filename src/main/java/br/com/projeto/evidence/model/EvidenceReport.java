@@ -1,4 +1,4 @@
-package br.com.projeto.evidence;
+package br.com.projeto.evidence.model;
 
 import java.util.List;
 

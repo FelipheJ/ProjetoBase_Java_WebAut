@@ -18,13 +18,9 @@ import io.cucumber.junit.CucumberOptions;
                 "pretty",
                 "json:target/cucumber.json"
         },
-        features = {
-                "./src/test/resources/features/web",
-                "./src/test/resources/features/desktop"
-        },
+        features = "./src/test/resources/features/web",
         glue = {
                 "br.com.projeto.web.steps",
-                "br.com.projeto.desktop.steps",
                 "br.com.projeto.configuration",
                 "br.com.projeto.commons",
                 "br.com.projeto.bean"

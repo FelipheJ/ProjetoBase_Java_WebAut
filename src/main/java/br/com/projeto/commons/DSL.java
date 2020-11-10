@@ -6,7 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class DSL implements br.com.projeto.bean.interfaces.IDSL {
+public class DSL {
 
     /* Construtores */
     public DSL(WebDriver driver) {
@@ -23,7 +23,6 @@ public class DSL implements br.com.projeto.bean.interfaces.IDSL {
         new Actions(webDriver).moveToElement(driverWait.until(ExpectedConditions.elementToBeClickable(webDriver.switchTo().activeElement()))).click().perform();
     }
 
-    @Override
     public void clicar(By localizador) {
         new Actions(webDriver).moveToElement(driverWait.until(ExpectedConditions.elementToBeClickable(obterElemento(localizador)))).click().perform();
     }
@@ -41,12 +40,10 @@ public class DSL implements br.com.projeto.bean.interfaces.IDSL {
         new Actions(webDriver).moveToElement(driverWait.until(ExpectedConditions.elementToBeClickable(webDriver.switchTo().activeElement()))).sendKeys(key).perform();
     }
 
-    @Override
     public void escrever(By localizador, String txt) {
         new Actions(webDriver).moveToElement(driverWait.until(ExpectedConditions.elementToBeClickable(obterElemento(localizador)))).sendKeys(txt).perform();
     }
 
-    @Override
     public void escrever(By localizador, Keys key) {
         new Actions(webDriver).moveToElement(driverWait.until(ExpectedConditions.elementToBeClickable(obterElemento(localizador)))).sendKeys(key).perform();
     }
@@ -66,7 +63,6 @@ public class DSL implements br.com.projeto.bean.interfaces.IDSL {
         e.clear();
     }
 
-    @Override
     public void limpar(By localizador) {
         WebElement e = obterElemento(localizador);
         new Actions(webDriver).moveToElement(driverWait.until(ExpectedConditions.elementToBeClickable(e))).perform();
@@ -90,7 +86,6 @@ public class DSL implements br.com.projeto.bean.interfaces.IDSL {
         return retorno;
     }
 
-    @Override
     public boolean estaVisivel(By localizador) {
         boolean retorno;
         try {
@@ -113,7 +108,6 @@ public class DSL implements br.com.projeto.bean.interfaces.IDSL {
         return retorno;
     }
 
-    @Override
     public boolean estaPresente(By localizador) {
         boolean retorno = true;
         try {
