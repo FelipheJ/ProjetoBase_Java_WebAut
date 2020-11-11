@@ -9,13 +9,13 @@ import java.util.Properties;
 import javax.imageio.ImageIO;
 import java.io.FileOutputStream;
 import java.awt.image.BufferedImage;
-import br.com.projeto.evidence.model.enums.EvidenceType;
-import br.com.projeto.evidence.model.EvidenceReport;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JRException;
-import br.com.projeto.evidence.model.SeleniumEvidence;
+import br.com.projeto.evidence.model.EvidenceReport;
 import net.sf.jasperreports.engine.JasperFillManager;
+import br.com.projeto.evidence.model.SeleniumEvidence;
 import net.sf.jasperreports.engine.JasperExportManager;
+import br.com.projeto.evidence.model.enums.EvidenceType;
 import br.com.projeto.evidence.utils.SeleniumEvidenceUtils;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -26,7 +26,7 @@ public class GenerateEvidenceReport {
     public static void generareEvidenceReport(EvidenceReport evidenceReport, EvidenceType reportType) throws IOException {
     	List<SeleniumEvidence> data = evidenceReport.getEvidenceList();
         
-        Properties properties = SeleniumEvidenceUtils.loadProperties();
+        Properties properties = SeleniumEvidenceUtils.loadProperties("init.properties");
         String evidenceDir = System.getProperty("user.dir") + System.getProperty("file.separator") + 
         		properties.getProperty("evidence.dir") + System.getProperty("file.separator");
         

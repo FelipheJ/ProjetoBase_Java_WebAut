@@ -14,9 +14,9 @@ public class StepExecutor extends BaseTest {
                 method.invoke(instance);
             }
         } catch (Exception ex) {
-            /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-             * Caso ocorra alguma exceção do método chamado ou da reflexão *
-             * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+            /* * * * * * * * * * * * * *
+             * Caso ocorra uma exceção *
+             * * * * * * * * * * * * * */
             setError(ex, webDriver);
         } catch (AssertionError ae) {
             /* * * * * * * * * * * * * * * * * *
@@ -26,14 +26,6 @@ public class StepExecutor extends BaseTest {
         }
     }
 
-    /**
-     * This method gets the specified method of an object.
-     *
-     * @param name     - The name of the method.
-     * @param instance - The instance of object that contains the method.
-     * @param args     - The arguments of the method (if there is).
-     * @return the corresponding method or null if, and only if, method has not found.
-     */
     public Method findMethod(Object instance, String name, Object... args) {
         Method m = null;
         List<Method> methodList = new ArrayList<>();

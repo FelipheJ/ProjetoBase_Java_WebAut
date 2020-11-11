@@ -8,9 +8,9 @@ public class SeleniumEvidenceUtils {
 
     protected static Properties properties;
 
-    public static Properties loadProperties() throws IOException {
+    public static Properties loadProperties(String fileName) throws IOException {
         properties = new Properties();
-        properties.load(new FileInputStream("init.properties"));
+        properties.load(new FileInputStream(fileName));
         return properties;
     }
 

@@ -18,31 +18,19 @@ public class EvidenceReport {
 		this.project = project;
 		this.exceptionString = exceptionString;
 	}
-	
-	/**
-	 * @return the evidenceList
-	 */
+
 	public List<SeleniumEvidence> getEvidenceList() {
 		return evidenceList;
 	}
-	
-	/**
-	 * @param evidenceList the evidenceList to set
-	 */
+
 	public void setEvidenceList(List<SeleniumEvidence> evidenceList) {
 		this.evidenceList = evidenceList;
 	}
-	
-	/**
-	 * @return the reportName
-	 */
+
 	public String getReportName() {
 		return reportName;
 	}
-	
-	/**
-	 * @param reportName the reportName to set
-	 */
+
 	public void setReportName(String reportName) {
 		this.reportName = reportName;
 	}
@@ -54,31 +42,19 @@ public class EvidenceReport {
 	public void setTester(String tester) {
 		this.tester = tester;
 	}
-	
-	/**
-	 * @return the project
-	 */
+
 	public String getProject() {
 		return project;
 	}
-	
-	/**
-	 * @param project the project to set
-	 */
+
 	public void setProject(String project) {
 		this.project = project;
 	}
-	
-	/**
-	 * @return the exceptionString
-	 */
+
 	public String getExceptionString() {
 		return exceptionString;
 	}
-	
-	/**
-	 * @param exceptionString the exceptionString to set
-	 */
+
 	public void setExceptionString(String exceptionString) {
 		this.exceptionString = exceptionString;
 	}

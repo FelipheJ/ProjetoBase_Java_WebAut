@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import br.com.projeto.commons.Utils;
 import br.com.projeto.bean.enums.Web;
 import br.com.projeto.commons.BaseTest;
 import br.com.projeto.evidence.model.EvidenceReport;
@@ -20,7 +21,7 @@ public class Hooks extends BaseTest {
 
     @After(value = "@web")
     public void afterScenarioWeb() {
-        report = new EvidenceReport(evidences, "BasicEvidenceReportNoError", "Tester", "My Project", errors);
+        report = new EvidenceReport(evidences, evidence.getNomeCasoDeTeste().concat(Utils.obterDataAtual(Utils.DATAHORA)), evidence.getNomeExecutor(), evidence.getNomeProjeto(), errors);
         try {
             GenerateEvidenceReport.generareEvidenceReport(report, EvidenceType.PDF);
         } catch (IOException ioException) {

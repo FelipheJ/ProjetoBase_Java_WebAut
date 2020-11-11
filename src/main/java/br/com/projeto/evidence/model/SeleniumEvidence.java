@@ -5,11 +5,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import org.apache.commons.codec.binary.Base64;
 
-/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Bean to store evidence message and image in a BASE64Decoder.   *
- *                                                                *
- * @author Elias Nogueira <elias.nogueira@gmai.com>               *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
 public final class SeleniumEvidence {
 
     private String message;
@@ -48,7 +43,7 @@ public final class SeleniumEvidence {
         setImage(ImageIO.read(new ByteArrayInputStream(toImage(imageString))));
     }
 
-    public static byte[] toImage(String string) throws Exception {
+    public static byte[] toImage(String string) {
         return Base64.decodeBase64(string);
     }
 }

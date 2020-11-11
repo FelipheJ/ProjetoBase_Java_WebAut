@@ -1,6 +1,8 @@
 package br.com.projeto.commons;
 
 import java.util.ArrayList;
+
+import br.com.projeto.evidence.model.Evidence;
 import junit.framework.TestCase;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +17,7 @@ public class BaseTest {
 
     /* Atributos da evidência */
     protected static String errors = null;
+    protected static Evidence evidence = null;
     protected static EvidenceReport report = null;
     protected static ArrayList<SeleniumEvidence> evidences = null;
 
@@ -38,10 +41,6 @@ public class BaseTest {
         return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
     }
 
-    /**
-     * Captura uma foto da tela do browser.
-     * @param descricao - mensagem descrevendo o contexto da imagem capturada.
-     */
     protected void capturarTela(String descricao) {
         try {
             evidences.add(new SeleniumEvidence(descricao, getScrrenshotAsBase64(webDriver)));
