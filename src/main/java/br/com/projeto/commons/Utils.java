@@ -7,8 +7,8 @@ import java.util.Date;
 public class Utils {
 
     public static final String HORA = "HHmmss";
-    public static final String DATA = "ddMMuuuu";
-    public static final String DATAHORA = "ddMMuuuuHHmmss";
+    public static final String DATA = "ddMMyyyy";
+    public static final String DATAHORA = "ddMMyyyyHHmmss";
 
     public static Date obterDataAtual() {
         return Calendar.getInstance().getTime();

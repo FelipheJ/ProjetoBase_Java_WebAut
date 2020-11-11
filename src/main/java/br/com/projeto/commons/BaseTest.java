@@ -26,6 +26,10 @@ public class BaseTest {
     protected static final int MAX_TIME_WAIT = 20;
     protected static WebDriverWait webDriverWaiter;
 
+    protected void initializeEvidence() {
+        evidence = new Evidence();
+    }
+
     protected void initializeWebApplication(WebApplication webApplication) {
         webDriver = webApplication.getDriver();
         //webDriver.manage().window().fullscreen();

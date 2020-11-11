@@ -1,13 +1,16 @@
 package br.com.projeto.web.steps;
 
+import br.com.projeto.web.functionalities.evidence.Parameters;
+import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Dado;
 import java.lang.reflect.Method;
+import io.cucumber.datatable.DataTable;
 import br.com.projeto.commons.StepExecutor;
 import br.com.projeto.web.functionalities.CommonFuncionalities;
-import io.cucumber.java.pt.E;
 
 public class CommonSteps {
 
+    private Parameters parameters = new Parameters();
     private StepExecutor stepExecutor = new StepExecutor();
     private CommonFuncionalities commonFunc = new CommonFuncionalities();
 
@@ -18,6 +21,13 @@ public class CommonSteps {
     }
 
     @E("estou executando o teste")
-    public void estouExecutandoOTeste() {
+    public void estouExecutandoOTeste(DataTable parametros) {
+        parameters.estouExecutandoOTeste(parametros);
+    }
+
+    @E("clico no botão {string}")
+    public void clicoNoBotão(String botao) {
+        Method method = stepExecutor.findMethod(commonFunc, "clicarNoBotao", botao);
+        stepExecutor.execute(commonFunc, method, botao);
     }
 }

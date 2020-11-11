@@ -21,7 +21,7 @@ public class Hooks extends BaseTest {
 
     @After(value = "@web")
     public void afterScenarioWeb() {
-        report = new EvidenceReport(evidences, evidence.getNomeCasoDeTeste().concat(Utils.obterDataAtual(Utils.DATAHORA)), evidence.getNomeExecutor(), evidence.getNomeProjeto(), errors);
+        report = new EvidenceReport(evidences, evidence.getNumeroCT().concat("_".concat(Utils.obterDataAtual(Utils.DATAHORA))), evidence.getNomeExecutor(), evidence.getNomeProjeto(), errors);
         try {
             GenerateEvidenceReport.generareEvidenceReport(report, EvidenceType.PDF);
         } catch (IOException ioException) {
