@@ -1,8 +1,8 @@
 package br.com.projeto.commons;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 public class Utils {
 

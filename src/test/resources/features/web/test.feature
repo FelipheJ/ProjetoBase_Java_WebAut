@@ -10,12 +10,5 @@ Funcionalidade: Teste de execução do site xxxxxxx
   @web
   Cenario: Acessar site
     E estou executando o teste
-      | Projeto              | Número CT | Nome CT      | Executor | Sprint    |
-      | Criação de Framework | CFrame01a | CT que passa | Lorrão   | Sprint 01 |
-
-  @web @teste
-  Cenario: Acessar site e falhar
-    E estou executando o teste
-      | Projeto              | Número CT | Nome CT      | Executor | Sprint    |
-      | Criação de Framework | CFrame01a | CT que passa | Lorrão   | Sprint 01 |
-    E clico no botão "teste"
+      | Projeto           | Número CT      | Nome CT      | Executor      | Sprint            |
+      | (Nome do Projeto) | (Número do CT) | (Nome do CT) | Feliphe Jesus | (Ciclo da Sprint) |

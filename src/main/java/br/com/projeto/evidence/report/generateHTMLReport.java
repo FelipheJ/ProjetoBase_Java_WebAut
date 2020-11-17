@@ -1,58 +1,54 @@
 package br.com.projeto.evidence.report;
 
 import java.io.File;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Properties;
+import java.io.FileInputStream;
 import java.time.LocalDateTime;
 import java.text.SimpleDateFormat;
+import java.io.FileNotFoundException;
 import java.time.format.DateTimeFormatter;
 import com.rajatthareja.reportbuilder.ReportBuilder;
 
 public class generateHTMLReport {
 
+	public static void main(String... args) throws IOException {
 
-	public static void main(String... args){
-
-		DateTimeFormatter formatoDataHora = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 		LocalDateTime atual = LocalDateTime.now();
-
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-
-		// Create ReportBuilder Object
-		ReportBuilder reportBuilder = new ReportBuilder();
-
 		String path = System.getProperty("user.dir");
-
-		// Set output Report Dir
-		reportBuilder.setReportDirectory(path + "//target//");
-
-		// Set output report file name
-		reportBuilder.setReportFileName("CucumberHTML");
-
-		// Set Report Title
-		reportBuilder.setReportTitle("Execução de teste Porto Seguro");
-
-		reportBuilder.setReportColor("blue");
-
-		// Enable voice control for report
-		reportBuilder.enableVoiceControl();
-
-		// Add additional info for Report
-		reportBuilder.setAdditionalInfo("Ambiente", "Homologação");
-
-		reportBuilder.setAdditionalInfo("Data e hora", formatoDataHora.format(atual));
-
-		// Create list or report Files or Directories or URLs or JSONObject or
-		// JSONString
+		ReportBuilder reportBuilder = new ReportBuilder();
 		List<Object> cucumberJsonReports = new ArrayList<>();
-		cucumberJsonReports.add(new File(path + "//target//cucumber.json"));
-		cucumberJsonReports.add(new File(path + "//target//"));
+		DateTimeFormatter formatoDataHora = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
-		// Build your report
+		Properties properties = loadProperties(path + "\\report.properties");
+
+		reportBuilder.setReportDirectory(path + "\\target\\");
+		reportBuilder.setReportFileName((String) properties.get("filename"));
+		reportBuilder.setReportTitle((String) properties.get("reporttitle"));
+		reportBuilder.setReportColor((String) properties.get("reportcolor"));
+		reportBuilder.setAdditionalInfo("Ambiente", (String) properties.get("enviroment"));
+		reportBuilder.setAdditionalInfo("Data e hora", formatoDataHora.format(atual));
+		if (((String) properties.get("voicecontrol")).toLowerCase().equals("true")) {
+			reportBuilder.enableVoiceControl();
+		}
+		cucumberJsonReports.add(new File(path + "\\target\\cucumber.json"));
+		cucumberJsonReports.add(new File(path + "\\target\\"));
+
 		reportBuilder.build(cucumberJsonReports);
-
 	}
 
+	private static Properties loadProperties(String path) throws IOException {
+		Properties p = new Properties();
+		try {
+			p.load(new FileInputStream(path));
+		} catch(IOException ex) {
+			ex.printStackTrace(System.err);
+			throw new IOException("Erro ao carregar o arquivo 'report.properties'.");
+		}
+		return p;
+	}
 }
 

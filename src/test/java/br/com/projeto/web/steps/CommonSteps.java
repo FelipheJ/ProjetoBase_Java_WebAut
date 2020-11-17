@@ -1,11 +1,11 @@
 package br.com.projeto.web.steps;
 
-import br.com.projeto.web.functionalities.evidence.Parameters;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Dado;
 import java.lang.reflect.Method;
 import io.cucumber.datatable.DataTable;
 import br.com.projeto.commons.StepExecutor;
+import br.com.projeto.web.functionalities.evidence.Parameters;
 import br.com.projeto.web.functionalities.CommonFuncionalities;
 
 public class CommonSteps {

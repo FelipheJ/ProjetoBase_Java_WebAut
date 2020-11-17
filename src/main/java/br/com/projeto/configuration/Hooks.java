@@ -10,6 +10,7 @@ import br.com.projeto.commons.BaseTest;
 import br.com.projeto.evidence.model.EvidenceReport;
 import br.com.projeto.evidence.model.enums.EvidenceType;
 import br.com.projeto.evidence.report.GenerateEvidenceReport;
+import io.cucumber.java.Scenario;
 
 public class Hooks extends BaseTest {
 
@@ -20,10 +21,10 @@ public class Hooks extends BaseTest {
     }
 
     @After(value = "@web")
-    public void afterScenarioWeb() {
+    public void afterScenarioWeb(Scenario scenario) {
         report = new EvidenceReport(evidences, evidence.getNumeroCT().concat("_".concat(Utils.obterDataAtual(Utils.DATAHORA))), evidence.getNomeExecutor(), evidence.getNomeProjeto(), errors);
         try {
-            GenerateEvidenceReport.generareEvidenceReport(report, EvidenceType.PDF);
+            GenerateEvidenceReport.generareEvidenceReport(report, scenario, EvidenceType.PDF);
         } catch (IOException ioException) {
             System.err.println("Um erro ocorreu ao gerar as evidencias.");
             ioException.printStackTrace(System.err);
