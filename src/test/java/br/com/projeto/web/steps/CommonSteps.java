@@ -7,6 +7,7 @@ import io.cucumber.datatable.DataTable;
 import br.com.projeto.commons.StepExecutor;
 import br.com.projeto.web.functionalities.evidence.Parameters;
 import br.com.projeto.web.functionalities.CommonFuncionalities;
+import io.cucumber.java.pt.Quando;
 
 public class CommonSteps {
 
@@ -29,5 +30,17 @@ public class CommonSteps {
     public void clicoNoBotão(String botao) {
         Method method = stepExecutor.findMethod(commonFunc, "clicarNoBotao", botao);
         stepExecutor.execute(commonFunc, method, botao);
+    }
+
+    @E("insiro no campo {string} o valor {string}")
+    public void insiroNoCampoOValor(String campo, String valor) {
+        Method method = stepExecutor.findMethod(commonFunc, "inserirValorNoCampo", campo, valor);
+        stepExecutor.execute(commonFunc, method, campo, valor);
+    }
+
+    @Quando("aperto a tecla {string}")
+    public void apertoATecla(String tecla) {
+        Method method = stepExecutor.findMethod(commonFunc, "apertarTecla", tecla);
+        stepExecutor.execute(commonFunc, method, tecla);
     }
 }

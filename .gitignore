@@ -3,7 +3,7 @@
 .idea/*
 target/*
 
-evidence/failed/*
+evidence/Failed/*
 
-evidence/passed/*
+evidence/Passed/*
 

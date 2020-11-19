@@ -5,13 +5,14 @@ import java.lang.reflect.Method;
 
 public class StepExecutor extends BaseTest {
 
-    public void execute(Object instance, Method method, Object... args) {
+    public Object execute(Object instance, Method method, Object... args) {
 
+        Object ret = null;
         try {
             if (Objects.nonNull(args) && args.length > 0) {
-                method.invoke(instance, args);
+                ret = method.invoke(instance, args);
             } else {
-                method.invoke(instance);
+                ret = method.invoke(instance);
             }
         } catch (Exception ex) {
             /* * * * * * * * * * * * * *
@@ -24,6 +25,7 @@ public class StepExecutor extends BaseTest {
              * * * * * * * * * * * * * * * * * */
             setError(ae, webDriver);
         }
+        return ret;
     }
 
     public Method findMethod(Object instance, String name, Object... args) {
