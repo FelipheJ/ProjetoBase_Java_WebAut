@@ -9,9 +9,8 @@ import java.io.IOException;
 import java.util.Properties;
 import javax.imageio.ImageIO;
 import java.io.FileOutputStream;
-import java.awt.image.BufferedImage;
-
 import io.cucumber.java.Scenario;
+import java.awt.image.BufferedImage;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JRException;
 import br.com.projeto.evidence.utils.EvidenceUtils;
@@ -131,10 +130,9 @@ public class GenerateEvidenceReport {
                     throw new IllegalArgumentException("The specified file extension is not recognized.");
             }
 
-        } catch (SecurityException securityException) {
-            securityException.printStackTrace();
-        } catch (JRException jrException) {
-            jrException.printStackTrace();
+        } catch (Exception ex) {
+            System.err.println("An error occurred while trying to generate the evidences.");
+            ex.printStackTrace(System.err);
         }
     }
 

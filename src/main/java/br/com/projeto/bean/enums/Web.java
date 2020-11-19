@@ -9,7 +9,7 @@ public enum Web implements WebApplication {
     CHROME {
         @Override
         public WebDriver getDriver() {
-            System.setProperty("webdriver.chrome.driver","chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
             return new ChromeDriver();
         }
     }
