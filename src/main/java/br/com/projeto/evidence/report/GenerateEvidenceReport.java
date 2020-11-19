@@ -45,9 +45,9 @@ public class GenerateEvidenceReport {
         EvidenceUtils.createEvidenceDirectory(evidenceDir);
 
         if (scenario.isFailed()) {
-            evidenceDir += System.getProperty("file.separator") + "Failed";
+            evidenceDir += "Failed" + System.getProperty("file.separator");
         } else {
-            evidenceDir += System.getProperty("file.separator") + "Passed";
+            evidenceDir += "Passed" + System.getProperty("file.separator");
         }
 
         try {
@@ -55,16 +55,16 @@ public class GenerateEvidenceReport {
             companyImage = properties.getProperty("image.company.path");
             customerImage = properties.getProperty("image.customer.path");
 
-            if (Objects.nonNull(companyImage)) {
-                imageCompany = ImageIO.read(new File(companyImage));
-            } else {
+            if (Objects.equals(companyImage, "null") || Objects.isNull(companyImage)) {
                 imageCompany = null;
+            } else {
+                imageCompany = ImageIO.read(new File(companyImage));
             }
 
-            if (Objects.nonNull(customerImage)) {
-                imageClient = ImageIO.read(new File(customerImage));
-            } else {
+            if (Objects.equals(customerImage, "null") || Objects.isNull(customerImage)) {
                 imageClient = null;
+            } else {
+                imageClient = ImageIO.read(new File(customerImage));
             }
 
             reportName = evidenceReport.getReportName();
@@ -88,9 +88,7 @@ public class GenerateEvidenceReport {
             }
 
             parameters = new HashMap<>();
-            if (Objects.nonNull(exception)) {
-                parameters.put("SEL_EXCEPTION", exception);
-            }
+            parameters.put("SEL_EXCEPTION", exception);
 
             parameters.put("SEL_COMPANY_LOGO", imageCompany);
             parameters.put("SEL_CUSTOMER_LOGO", imageClient);
