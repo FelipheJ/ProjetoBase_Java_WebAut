@@ -1,4 +1,4 @@
-# BPWAutomation
+# Framework base em java para automação web
 
 Projeto base para automação de testes web com BDD usando Selenium e Cucumber.
 <div class="corpo_mensagem">
