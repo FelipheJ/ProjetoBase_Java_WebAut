@@ -1,6 +1,6 @@
-# Framework base em java para automação web
+# Framework base para automação de testes web
 
-Projeto base para automação de testes web com BDD usando Selenium e Cucumber.
+Projeto base para automação de testes em websites. Código em JAVA, utilizando BDD com Cucumber e Selenium.
 <div class="corpo_mensagem">
     <p>
       <br>Browser utilizado para os testes: Google Chrome</br>
