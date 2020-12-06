@@ -1,10 +1,15 @@
 package br.com.projeto.commons;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import br.com.projeto.evidence.model.Evidence;
 import junit.framework.TestCase;
+
+import java.util.Base64;
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -42,19 +47,32 @@ public class BaseTest {
     }
 
     protected String getScrrenshotAsBase64(WebDriver driver) {
-        return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
     }
 
     protected void capturarTela(String descricao) {
+        Robot robot;
+        BufferedImage image;
         try {
-            evidences.add(new SeleniumEvidence(descricao, getScrrenshotAsBase64(webDriver)));
-        } catch(Exception exception) {
-            System.err.println("Nao foi possivel capturar a tela.");
-            exception.printStackTrace(System.err);
+            robot = new Robot();
+            Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+            image = robot.createScreenCapture(screen);
+            evidences.add(new SeleniumEvidence(descricao, Base64.getEncoder().encode(image.toString().getBytes()).toString()));
+        } catch (Exception ex) {
+
         }
     }
 
-    protected void setError(Throwable t, WebDriver driver)  {
+//    protected void capturarTela(String descricao) {
+//        try {
+//            evidences.add(new SeleniumEvidence(descricao, getScrrenshotAsBase64(webDriver)));
+//        } catch (Exception exception) {
+//            System.err.println("Nao foi possivel capturar a tela.");
+//            exception.printStackTrace(System.err);
+//        }
+//    }
+
+    protected void setError(Throwable t, WebDriver driver) {
         try {
             evidences.add(new SeleniumEvidence(t.getLocalizedMessage(), getScrrenshotAsBase64(driver)));
             errors = t.toString();

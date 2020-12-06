@@ -25,7 +25,7 @@ import io.cucumber.junit.CucumberOptions;
                 "br.com.projeto.commons",
                 "br.com.projeto.bean"
         },
-        tags = "@web")
+        tags = "@CT-001")
 
 public class RunTest extends BaseTest {
 }
