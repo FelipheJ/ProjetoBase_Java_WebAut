@@ -23,6 +23,7 @@ public class CommonFuncionalities extends BaseTest {
             default:
                 throw new IllegalArgumentException("O campo especificado não foi implementado.");
         }
+        capturarTela("Insiro no campo " + campo + " o valor " + valor + ":");
     }
 
     public boolean visualizarSite(String site) {
@@ -39,6 +40,13 @@ public class CommonFuncionalities extends BaseTest {
     }
 
     public void apertarTecla(String tecla) {
-        dsl.escrever(Keys.ENTER);
+        switch (tecla) {
+            case "Enter":
+                dsl.escrever(Keys.ENTER);
+                break;
+            default:
+                throw new IllegalArgumentException("A tecla especificada não foi implementada.");
+        }
+        capturarTela("E aperto a tecla " + tecla + ":");
     }
 }

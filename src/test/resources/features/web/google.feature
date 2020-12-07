@@ -2,6 +2,7 @@
 #encoding: UTF-8
 #author: Feliphe Jesus
 
+@web
 Funcionalidade: Teste de execução do site https://www.google.com.br
 
   Contexto: Acessar website

@@ -1,18 +1,17 @@
 package br.com.projeto.commons;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
-import br.com.projeto.evidence.model.Evidence;
-import junit.framework.TestCase;
-
+import java.io.File;
 import java.util.Base64;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import junit.framework.TestCase;
+import java.awt.image.BufferedImage;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import br.com.projeto.evidence.model.Evidence;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import br.com.projeto.evidence.model.EvidenceReport;
 import br.com.projeto.bean.interfaces.WebApplication;
@@ -50,6 +49,19 @@ public class BaseTest {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
     }
 
+    protected void capturarTela(String imageName, String path) {
+        Robot robot;
+        BufferedImage image;
+        try {
+            robot = new Robot();
+            Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+            image = robot.createScreenCapture(screen);
+            Utils.ImageUtils.saveImage(image, path, imageName, "png");
+        } catch (Exception ex) {
+            ex.printStackTrace(System.err);
+        }
+    }
+
     protected void capturarTela(String descricao) {
         Robot robot;
         BufferedImage image;
@@ -57,9 +69,9 @@ public class BaseTest {
             robot = new Robot();
             Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
             image = robot.createScreenCapture(screen);
-            evidences.add(new SeleniumEvidence(descricao, Base64.getEncoder().encode(image.toString().getBytes()).toString()));
+            evidences.add(new SeleniumEvidence(descricao, Base64.getEncoder().encodeToString( Utils.ImageUtils.getBytes(image, "jpg"))));
         } catch (Exception ex) {
-
+            ex.printStackTrace(System.err);
         }
     }
 

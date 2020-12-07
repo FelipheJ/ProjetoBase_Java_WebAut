@@ -1,5 +1,6 @@
 package br.com.projeto.web.steps;
 
+import org.junit.Assert;
 import io.cucumber.java.pt.*;
 import java.lang.reflect.Method;
 import io.cucumber.datatable.DataTable;
@@ -41,6 +42,7 @@ public class CommonSteps {
         boolean r;
         Method method = stepExecutor.findMethod(commonFunc, "visualizarSite", site);
         r = (boolean) stepExecutor.execute(commonFunc, method, site);
-        stepExecutor.assertBy("assertTrue", r);
+        method = stepExecutor.findMethod(Assert.class, "assertTrue", boolean.class);
+        stepExecutor.execute(null, method, r);
     }
 }
