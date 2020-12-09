@@ -1,12 +1,11 @@
 package br.com.projeto.configuration;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
+import br.com.projeto.exceptions.NoSuchAnnotationException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import br.com.projeto.commons.Utils;
-import br.com.projeto.bean.enums.Web;
 import br.com.projeto.commons.BaseTest;
 import br.com.projeto.evidence.model.EvidenceReport;
 import br.com.projeto.evidence.model.enums.EvidenceType;
@@ -14,23 +13,55 @@ import br.com.projeto.evidence.report.GenerateEvidenceReport;
 
 public class Hooks extends BaseTest {
 
-    @Before(value = "@web")
-    public void beforeScenarioWeb() {
-        evidences = new ArrayList<>();
-        initializeWebApplication(Web.CHROME);
+    @Before(value = "@evidence", order = 1)
+    public void beforeEvidence() {
+        initializeEvidence();
     }
 
-    @After(value = "@web")
-    public void afterScenarioWeb(Scenario scenario) {
-        report = new EvidenceReport(evidences, evidence.getNumeroCT().concat("_".concat(Utils.DataUtils.obterDataAtual(Utils.DataUtils.DATAHORA))), evidence.getNomeExecutor(), evidence.getNomeProjeto(), errors);
+    @Before(value = "@web", order = 2)
+    public void beforeScenarioWeb(Scenario scenario) {
+        if (scenario.getSourceTagNames().contains("@chrome")) {
+            initializeWebApplication("CHROME");
+        } else if (scenario.getSourceTagNames().contains("@firefox")) {
+            initializeWebApplication("FIREFOX");
+        } else if (scenario.getSourceTagNames().contains("@opera")) {
+            initializeWebApplication("OPERA");
+        } else if (scenario.getSourceTagNames().contains("@safari")) {
+            initializeWebApplication("SAFARI");
+        } else if (scenario.getSourceTagNames().contains("@edge")) {
+            initializeWebApplication("EDGE");
+        } else if (scenario.getSourceTagNames().contains("@ie")) {
+            initializeWebApplication("IE");
+        } else {
+            throw new NoSuchAnnotationException("Browser annotation is not specified.");
+        }
+    }
+
+//    @Before(value = "@chrome", order = 2)
+//    public void beforeScenarioChrome() {
+//        initializeWebApplication("CHROME");
+//    }
+//
+//    @Before(value = "@firefox", order = 2)
+//    public void beforeScenarioFirefox() {
+//        initializeWebApplication("FIREFOX");
+//    }
+
+    @After(value = "@evidence", order = 1)
+    public void afterEvidence(Scenario scenario) {
+        report = new EvidenceReport(evidences, evidence.getEvidenceName(), evidence.getNomeExecutor(), evidence.getNomeProjeto(), errors);
         try {
             GenerateEvidenceReport.generareEvidenceReport(report, scenario, EvidenceType.PDF);
+            System.out.println("Evidence generated successfully.");
         } catch (IOException ioException) {
-            System.err.println("Um erro ocorreu ao gerar as evidencias.");
+            System.err.println("An error occurred while generating the evidence.");
             ioException.printStackTrace(System.err);
-        } finally {
-            closeWeb();
         }
+    }
+
+    @After(value = "@web", order = 2)
+    public void afterScenarioWeb() {
+        closeWeb();
     }
 
 }

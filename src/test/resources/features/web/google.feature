@@ -2,13 +2,13 @@
 #encoding: UTF-8
 #author: Feliphe Jesus
 
-@web
+@web @evidence
 Funcionalidade: Teste de execução do site https://www.google.com.br
 
   Contexto: Acessar website
     Dado que acesso o site "https://www.google.com.br"
 
-  @CT-001
+  @chrome @CT-001
   Cenario: Cenário qualquer
     E estou executando o teste
       | Projeto    | Número CT | Nome CT       | Executor | Sprint   |

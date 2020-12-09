@@ -12,7 +12,7 @@ public class CommonFuncionalities extends BaseTest {
 
     public void acessarSite(String link) {
         webDriver.get(link);
-        capturarTela("Acesso o site " + link + ":");
+        screenshot("Acesso o site " + link + ":");
     }
 
     public void inserirValorNoCampo(String valor, String campo) {
@@ -23,7 +23,7 @@ public class CommonFuncionalities extends BaseTest {
             default:
                 throw new IllegalArgumentException("O campo especificado não foi implementado.");
         }
-        capturarTela("Insiro no campo " + campo + " o valor " + valor + ":");
+        screenshot("Insiro no campo " + campo + " o valor " + valor + ":");
     }
 
     public boolean visualizarSite(String site) {
@@ -35,7 +35,7 @@ public class CommonFuncionalities extends BaseTest {
             default:
                 throw new IllegalArgumentException("O site especificado não foi implementado.");
         }
-        capturarTela("Teste");
+        screenshot("Teste");
         return retorno;
     }
 
@@ -47,6 +47,6 @@ public class CommonFuncionalities extends BaseTest {
             default:
                 throw new IllegalArgumentException("A tecla especificada não foi implementada.");
         }
-        capturarTela("E aperto a tecla " + tecla + ":");
+        screenshot("E aperto a tecla " + tecla + ":");
     }
 }
