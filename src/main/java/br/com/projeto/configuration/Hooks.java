@@ -1,14 +1,13 @@
 package br.com.projeto.configuration;
 
 import java.io.IOException;
-
-import br.com.projeto.exceptions.NoSuchAnnotationException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import br.com.projeto.commons.BaseTest;
 import br.com.projeto.evidence.model.EvidenceReport;
 import br.com.projeto.evidence.model.enums.EvidenceType;
+import br.com.projeto.exceptions.NoSuchAnnotationException;
 import br.com.projeto.evidence.report.GenerateEvidenceReport;
 
 public class Hooks extends BaseTest {
@@ -36,16 +35,6 @@ public class Hooks extends BaseTest {
             throw new NoSuchAnnotationException("Browser annotation is not specified.");
         }
     }
-
-//    @Before(value = "@chrome", order = 2)
-//    public void beforeScenarioChrome() {
-//        initializeWebApplication("CHROME");
-//    }
-//
-//    @Before(value = "@firefox", order = 2)
-//    public void beforeScenarioFirefox() {
-//        initializeWebApplication("FIREFOX");
-//    }
 
     @After(value = "@evidence", order = 1)
     public void afterEvidence(Scenario scenario) {

@@ -17,7 +17,7 @@ import br.com.projeto.evidence.model.EvidenceReport;
 import br.com.projeto.evidence.model.SeleniumEvidence;
 
 public class BaseTest {
-    
+
     /* Atributos da evidência */
     protected static String errors = null;
     protected static Evidence evidence = null;
@@ -34,7 +34,7 @@ public class BaseTest {
         evidence = new Evidence();
         evidences = new ArrayList<>();
     }
-    
+
     protected void initializeWebApplication(String driverName) {
         webDriver = DriverFactory.getDriver(driverName);
         waiter = new WebDriverWait(webDriver, MAX_TIME_WAIT);
@@ -69,7 +69,7 @@ public class BaseTest {
             robot = new Robot();
             Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
             image = robot.createScreenCapture(screen);
-            evidences.add(new SeleniumEvidence(description, Base64.getEncoder().encodeToString( Utils.ImageUtils.getBytes(image, "jpg"))));
+            evidences.add(new SeleniumEvidence(description, Base64.getEncoder().encodeToString(Utils.ImageUtils.getBytes(image, "jpg"))));
         } catch (Exception ex) {
             ex.printStackTrace(System.err);
         }

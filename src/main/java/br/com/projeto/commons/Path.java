@@ -4,15 +4,29 @@ import br.com.projeto.exceptions.PathNotImplementedException;
 
 public class Path {
 
-    private static final String IE_PATH = "iedriver.exe";
-    private static final String EDGE_PATH = "edgedriver.exe";
-    private static final String SAFARI_PATH = "safaridriver";
-    private static final String OPERA_PATH = "operadriver.exe";
-    private static final String FIREFOX_PATH = "geckodriver.exe";
-    private static final String CHROME_PATH = "chromedriver.exe";
+    private static final String IE_PATH;
+    private static final String EDGE_PATH;
+    private static final String OPERA_PATH;
+    private static final String SAFARI_PATH;
+    private static final String CHROME_PATH;
+    private static final String FIREFOX_PATH;
 
-    public static String get(String path) {
-        switch (path.toUpperCase()) {
+    static {
+        IE_PATH = "drivers" + separator() + "iedriver_390_x64.exe";
+        EDGE_PATH = "drivers" + separator() + "edgedriver_89_x64.exe";
+        SAFARI_PATH = separator() + "usr" + separator() + "bin" + separator() + "safaridriver";
+        OPERA_PATH = "drivers" + separator() + "operadriver_86_x64.exe";
+        FIREFOX_PATH = "drivers" + separator() + "geckodriver_0280_x64.exe";
+        CHROME_PATH = "drivers" + separator() + "chromedriver_87_x32.exe";
+    }
+
+    /**
+     * Obtains the path of specified browser (if it is already implemented).
+     * @param browserName name of browser.
+     * @return browserPath.
+     */
+    public static String get(String browserName) {
+        switch (browserName.toUpperCase()) {
             case "CHROME":
                 return CHROME_PATH;
             case "IE":
@@ -26,7 +40,15 @@ public class Path {
             case "EDGE":
                 return EDGE_PATH;
             default:
-                throw new PathNotImplementedException("This path hasn't yet been implemented.");
+                throw new PathNotImplementedException("This browserName hasn't yet been implemented.");
         }
+    }
+
+    /**
+     *
+     * @return the file separator of the current OS.
+     */
+    private static String separator() {
+        return System.getProperty("file.separator");
     }
 }
