@@ -2,17 +2,15 @@ package br.com.runTest;
 
 import org.junit.runner.RunWith;
 import io.cucumber.junit.Cucumber;
-import br.com.projeto.commons.BaseTest;
 import io.cucumber.junit.CucumberOptions;
 
 /**
  * @author Feliphe Jesus
- * @since September, 2020
+ * @version 2.0.0_2021
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(
         monochrome = true,
-        dryRun = false,
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         plugin = {
                 "pretty",
@@ -26,6 +24,5 @@ import io.cucumber.junit.CucumberOptions;
                 "br.com.projeto.bean"
         },
         tags = "@CT-001")
-
-public class RunTest extends BaseTest {
+public class RunTest {
 }
