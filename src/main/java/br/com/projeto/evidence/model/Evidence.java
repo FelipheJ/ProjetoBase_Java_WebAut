@@ -1,56 +1,64 @@
 package br.com.projeto.evidence.model;
 
-import br.com.projeto.commons.Utils;
+import java.util.ArrayList;
 
 public class Evidence {
 
-    private String cicloCT;
-    private String numeroCT;
-    private String nomeProjeto;
-    private String nomeExecutor;
-    private String nomeCasoDeTeste;
-
-    public String getCicloCT() {
-        return cicloCT;
+    public Evidence() {
     }
 
-    public void setCicloCT(String cicloCT) {
-        this.cicloCT = cicloCT;
+    private String name;
+    private String number;
+    private String tester;
+    private String cycle;
+    private String status;
+    private ArrayList<String> screenCaptureList;
+
+    public String getName() {
+        return name;
     }
 
-    public String getNumeroCT() {
-        return numeroCT;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setNumeroCT(String numeroCT) {
-        this.numeroCT = numeroCT;
+    public String getNumber() {
+        return number;
     }
 
-    public String getNomeProjeto() {
-        return nomeProjeto;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public void setNomeProjeto(String nomeProjeto) {
-        this.nomeProjeto = nomeProjeto;
+    public String getTester() {
+        return tester;
     }
 
-    public String getNomeExecutor() {
-        return nomeExecutor;
+    public void setTester(String tester) {
+        this.tester = tester;
     }
 
-    public void setNomeExecutor(String nomeExecutor) {
-        this.nomeExecutor = nomeExecutor;
+    public String getCycle() {
+        return cycle;
     }
 
-    public String getNomeCasoDeTeste() {
-        return nomeCasoDeTeste;
+    public void setCycle(String cycle) {
+        this.cycle = cycle;
     }
 
-    public void setNomeCasoDeTeste(String nomeCasoDeTeste) {
-        this.nomeCasoDeTeste = nomeCasoDeTeste;
+    public String getStatus() {
+        return status;
     }
 
-    public String getEvidenceName() {
-        return numeroCT + "_" + Utils.DataUtils.obterDataAtual(Utils.DataUtils.DATAHORA);
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public ArrayList<String> getScreenCaptureList() {
+        return screenCaptureList;
+    }
+
+    public void setScreenCaptureList(ArrayList<String> screenCaptureList) {
+        this.screenCaptureList = screenCaptureList;
     }
 }

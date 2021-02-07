@@ -4,7 +4,6 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.util.Base64;
 import java.awt.Rectangle;
-import java.util.ArrayList;
 import junit.framework.TestCase;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.TimeUnit;
@@ -13,16 +12,12 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import br.com.projeto.evidence.model.Evidence;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import br.com.projeto.evidence.model.EvidenceReport;
-import br.com.projeto.evidence.model.SeleniumEvidence;
 
 public class BaseTest {
 
     /* Atributos da evidência */
     protected static String errors = null;
-    protected static Evidence evidence = null;
-    protected static EvidenceReport report = null;
-    protected static ArrayList<SeleniumEvidence> evidences = null;
+    protected static Evidence evidence;
     private static final String DEFAULT_IMAGE_FORMAT = "png";
 
     /* Atributos do driver */
@@ -32,7 +27,6 @@ public class BaseTest {
 
     protected void initializeEvidence() {
         evidence = new Evidence();
-        evidences = new ArrayList<>();
     }
 
     protected void initializeWebApplication(String driverName) {
@@ -45,7 +39,7 @@ public class BaseTest {
         webDriver.quit();
     }
 
-    private String getScrrenshotAsBase64(WebDriver driver) {
+    protected String getScrrenshotAsBase64(WebDriver driver) {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
     }
 
@@ -62,30 +56,8 @@ public class BaseTest {
         }
     }
 
-    protected void screenshot(String description) {
-        Robot robot;
-        BufferedImage image;
-        try {
-            robot = new Robot();
-            Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-            image = robot.createScreenCapture(screen);
-            evidences.add(new SeleniumEvidence(description, Base64.getEncoder().encodeToString(Utils.ImageUtils.getBytes(image, "jpg"))));
-        } catch (Exception ex) {
-            ex.printStackTrace(System.err);
-        }
-    }
-
-    protected void browserScreenshot(String description) {
-        try {
-            evidences.add(new SeleniumEvidence(description, getScrrenshotAsBase64(webDriver)));
-        } catch (Exception exception) {
-            exception.printStackTrace(System.err);
-        }
-    }
-
     protected void setError(Throwable t, WebDriver driver) {
         try {
-            evidences.add(new SeleniumEvidence(t.getLocalizedMessage(), getScrrenshotAsBase64(driver)));
             errors = t.toString();
             TestCase.fail(t.getMessage());
         } catch (Exception e) {

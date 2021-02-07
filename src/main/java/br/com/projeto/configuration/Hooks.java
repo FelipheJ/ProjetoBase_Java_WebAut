@@ -2,13 +2,11 @@ package br.com.projeto.configuration;
 
 import java.io.IOException;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import br.com.projeto.commons.BaseTest;
-import br.com.projeto.evidence.model.EvidenceReport;
-import br.com.projeto.evidence.model.enums.EvidenceType;
 import br.com.projeto.exceptions.NoSuchAnnotationException;
-import br.com.projeto.evidence.report.GenerateEvidenceReport;
 
 public class Hooks extends BaseTest {
 
@@ -51,6 +49,10 @@ public class Hooks extends BaseTest {
     @After(value = "@web", order = 2)
     public void afterScenarioWeb() {
         closeWeb();
+    }
+
+    @AfterStep
+    public void afterStep() {
     }
 
 }
