@@ -2,9 +2,10 @@ package br.com.projeto.commons;
 
 import java.awt.Robot;
 import java.awt.Toolkit;
-import java.util.Base64;
 import java.awt.Rectangle;
-import junit.framework.TestCase;
+
+import io.cucumber.java.Scenario;
+
 import java.awt.image.BufferedImage;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +17,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BaseTest {
 
     /* Atributos da evidência */
-    protected static String errors = null;
     protected static Evidence evidence;
     private static final String DEFAULT_IMAGE_FORMAT = "png";
 
@@ -39,8 +39,14 @@ public class BaseTest {
         webDriver.quit();
     }
 
-    protected String getScrrenshotAsBase64(WebDriver driver) {
+    protected String getScreenshotAsBase64(WebDriver driver) {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
+    }
+
+    protected void screenshot(Scenario scenario) {
+        String img;
+        scenario.attach((img = getScreenshotAsBase64(webDriver)), DEFAULT_IMAGE_FORMAT, "ScreenCapture");
+        evidence.getScreenCaptureList().add(img);
     }
 
     protected void screenshot(String imageName, String directory) {
@@ -53,15 +59,6 @@ public class BaseTest {
             Utils.ImageUtils.saveImage(image, directory, imageName, DEFAULT_IMAGE_FORMAT);
         } catch (Exception ex) {
             ex.printStackTrace(System.err);
-        }
-    }
-
-    protected void setError(Throwable t, WebDriver driver) {
-        try {
-            errors = t.toString();
-            TestCase.fail(t.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace(System.err);
         }
     }
 }

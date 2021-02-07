@@ -1,5 +1,6 @@
 package br.com.projeto.evidence.model;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class Evidence {
@@ -12,7 +13,7 @@ public class Evidence {
     private String tester;
     private String cycle;
     private String status;
-    private ArrayList<String> screenCaptureList;
+    private List<String> screenCaptureList = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -54,11 +55,11 @@ public class Evidence {
         this.status = status;
     }
 
-    public ArrayList<String> getScreenCaptureList() {
+    public List<String> getScreenCaptureList() {
         return screenCaptureList;
     }
 
-    public void setScreenCaptureList(ArrayList<String> screenCaptureList) {
+    public void setScreenCaptureList(List<String> screenCaptureList) {
         this.screenCaptureList = screenCaptureList;
     }
 }

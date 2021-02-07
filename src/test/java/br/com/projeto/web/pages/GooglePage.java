@@ -17,14 +17,14 @@ public class GooglePage {
 
     /* Resultados: Link */
     @FindBy(xpath = "//cite[contains(text(),'github.com')]")
-    private WebElement githubLik;
+    private WebElement gitHubLink;
 
     /* Getters */
     public WebElement getBarraDeBusca() {
         return barraDeBusca;
     }
 
-    public WebElement getGithubLik() {
-        return githubLik;
+    public WebElement getGitHubLink() {
+        return gitHubLink;
     }
 }

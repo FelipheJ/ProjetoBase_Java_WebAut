@@ -2,21 +2,21 @@ package br.com.projeto.configuration;
 
 import java.io.IOException;
 import io.cucumber.java.After;
-import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.AfterStep;
 import br.com.projeto.commons.BaseTest;
 import br.com.projeto.exceptions.NoSuchAnnotationException;
 
 public class Hooks extends BaseTest {
 
     @Before(value = "@evidence", order = 1)
-    public void beforeEvidence() {
+    public void beforeEvidenceAnnotation() {
         initializeEvidence();
     }
 
     @Before(value = "@web", order = 2)
-    public void beforeScenarioWeb(Scenario scenario) {
+    public void beforeWebAnnotation(Scenario scenario) {
         if (scenario.getSourceTagNames().contains("@chrome")) {
             initializeWebApplication("CHROME");
         } else if (scenario.getSourceTagNames().contains("@firefox")) {
@@ -34,25 +34,18 @@ public class Hooks extends BaseTest {
         }
     }
 
+    @AfterStep
+    public void afterStep(Scenario scenario) {
+        screenshot(scenario);
+    }
+
     @After(value = "@evidence", order = 1)
-    public void afterEvidence(Scenario scenario) {
-        report = new EvidenceReport(evidences, evidence.getEvidenceName(), evidence.getNomeExecutor(), evidence.getNomeProjeto(), errors);
-        try {
-            GenerateEvidenceReport.generareEvidenceReport(report, scenario, EvidenceType.PDF);
-            System.out.println("Evidence generated successfully.");
-        } catch (IOException ioException) {
-            System.err.println("An error occurred while generating the evidence.");
-            ioException.printStackTrace(System.err);
-        }
+    public void afterEvidenceAnnotation(Scenario scenario) {
+        System.out.println("Neste step, a evidência do cenário " + scenario.getName() + " devem ser geradas.");
     }
 
     @After(value = "@web", order = 2)
-    public void afterScenarioWeb() {
+    public void afterWebAnnotation() {
         closeWeb();
     }
-
-    @AfterStep
-    public void afterStep() {
-    }
-
 }

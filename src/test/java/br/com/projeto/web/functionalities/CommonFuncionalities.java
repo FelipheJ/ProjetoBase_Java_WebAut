@@ -12,7 +12,6 @@ public class CommonFuncionalities extends BaseTest {
 
     public void acessarSite(String link) {
         webDriver.get(link);
-        screenshot("Acesso o site " + link + ":");
     }
 
     public void inserirValorNoCampo(String valor, String campo) {
@@ -23,19 +22,17 @@ public class CommonFuncionalities extends BaseTest {
             default:
                 throw new IllegalArgumentException("O campo especificado não foi implementado.");
         }
-        screenshot("Insiro no campo " + campo + " o valor " + valor + ":");
     }
 
     public boolean visualizarSite(String site) {
         boolean retorno;
         switch(site) {
             case "GitHub":
-                retorno = dsl.estaVisivel(googlePage.getGithubLik());
+                retorno = dsl.estaVisivel(googlePage.getGitHubLink());
                 break;
             default:
                 throw new IllegalArgumentException("O site especificado não foi implementado.");
         }
-        screenshot("Teste");
         return retorno;
     }
 
@@ -47,6 +44,5 @@ public class CommonFuncionalities extends BaseTest {
             default:
                 throw new IllegalArgumentException("A tecla especificada não foi implementada.");
         }
-        screenshot("E aperto a tecla " + tecla + ":");
     }
 }
