@@ -7,13 +7,12 @@ import io.cucumber.datatable.DataTable;
 public class Parameters extends BaseTest {
 
     public void estouExecutandoOTeste(DataTable parameters) {
-        super.initializeEvidence();
         for (Map<Object, Object> map : parameters.asMaps(String.class, String.class)) {
-            evidence.setCicloCT((String) map.get("Sprint"));
-            evidence.setNumeroCT((String) map.get("Número CT"));
-            evidence.setNomeProjeto((String) map.get("Projeto"));
-            evidence.setNomeExecutor((String) map.get("Executor"));
-            evidence.setNomeCasoDeTeste((String) map.get("Nome CT"));
+            evidence.setProjectName((String) map.get("Projeto"));
+            evidence.setTestNumber((String) map.get("Número CT"));
+            evidence.setTestName((String) map.get("Nome CT"));
+            evidence.setTesterName((String) map.get("Executor"));
+            evidence.setTestCycle((String) map.get("Sprint"));
         }
     }
 }

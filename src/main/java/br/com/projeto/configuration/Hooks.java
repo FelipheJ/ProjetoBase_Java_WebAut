@@ -1,6 +1,6 @@
 package br.com.projeto.configuration;
 
-import java.io.IOException;
+import br.com.projeto.evidence.utils.EvidenceUtils;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -35,17 +35,19 @@ public class Hooks extends BaseTest {
     }
 
     @AfterStep
-    public void afterStep(Scenario scenario) {
-        screenshot(scenario);
+    public void afterStep() {
+        screenshot();
+    }
+
+    @After(value = "@web", order = 0)
+    public void afterWebAnnotation() {
+        closeWeb();
     }
 
     @After(value = "@evidence", order = 1)
     public void afterEvidenceAnnotation(Scenario scenario) {
-        System.out.println("Neste step, a evidência do cenário " + scenario.getName() + " devem ser geradas.");
-    }
-
-    @After(value = "@web", order = 2)
-    public void afterWebAnnotation() {
-        closeWeb();
+        System.out.println("Generating evidence file for scenario: " + scenario.getName());
+        evidence.setTestStatus(scenario.getStatus().name());
+        EvidenceUtils.generateEvidenceReport(evidence);
     }
 }

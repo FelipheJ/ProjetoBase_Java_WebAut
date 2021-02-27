@@ -51,4 +51,9 @@ public class Path {
     private static String separator() {
         return System.getProperty("file.separator");
     }
+
+    public static String getEvidencePath() {
+        return System.getProperty("user.dir") + separator() + "evidence" + separator();
+    }
+
 }

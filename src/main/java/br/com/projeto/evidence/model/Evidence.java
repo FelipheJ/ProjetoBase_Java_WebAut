@@ -8,58 +8,77 @@ public class Evidence {
     public Evidence() {
     }
 
-    private String name;
-    private String number;
-    private String tester;
-    private String cycle;
-    private String status;
-    private List<String> screenCaptureList = new ArrayList<>();
-
-    public String getName() {
-        return name;
+    public Evidence(String projectName, String testName, String testNumber, String testerName, String testCycle, String testStatus, List<ScreenCapture> screenCaptureList) {
+        this.projectName = projectName;
+        this.testName = testName;
+        this.testNumber = testNumber;
+        this.testerName = testerName;
+        this.testCycle = testCycle;
+        this.testStatus = testStatus;
+        this.screenCaptureList = screenCaptureList;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    private String projectName;     /* ProjectName     */
+    private String testName;        /* TestName     */
+    private String testNumber;      /* TestNumber   */
+    private String testerName;      /* ExecutorName */
+    private String testCycle;       /* CycleNumber  */
+    private String testStatus;      /* TestStatus   */
+    private List<ScreenCapture> screenCaptureList = new ArrayList<>();
+
+    public String getProjectName() {
+        return projectName;
     }
 
-    public String getNumber() {
-        return number;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public String getTestName() {
+        return testName;
     }
 
-    public String getTester() {
-        return tester;
+    public void setTestName(String testName) {
+        this.testName = testName;
     }
 
-    public void setTester(String tester) {
-        this.tester = tester;
+    public String getTestNumber() {
+        return testNumber;
     }
 
-    public String getCycle() {
-        return cycle;
+    public void setTestNumber(String testNumber) {
+        this.testNumber = testNumber;
     }
 
-    public void setCycle(String cycle) {
-        this.cycle = cycle;
+    public String getTesterName() {
+        return testerName;
     }
 
-    public String getStatus() {
-        return status;
+    public void setTesterName(String testerName) {
+        this.testerName = testerName;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public String getTestCycle() {
+        return testCycle;
     }
 
-    public List<String> getScreenCaptureList() {
+    public void setTestCycle(String testCycle) {
+        this.testCycle = testCycle;
+    }
+
+    public String getTestStatus() {
+        return testStatus;
+    }
+
+    public void setTestStatus(String testStatus) {
+        this.testStatus = testStatus;
+    }
+
+    public List<ScreenCapture> getScreenCaptureList() {
         return screenCaptureList;
     }
 
-    public void setScreenCaptureList(List<String> screenCaptureList) {
+    public void setScreenCaptureList(List<ScreenCapture> screenCaptureList) {
         this.screenCaptureList = screenCaptureList;
     }
 }

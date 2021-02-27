@@ -3,15 +3,14 @@ package br.com.projeto.commons;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.Rectangle;
-
-import io.cucumber.java.Scenario;
-
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import br.com.projeto.evidence.model.Evidence;
+import br.com.projeto.evidence.model.ScreenCapture;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseTest {
@@ -43,10 +42,16 @@ public class BaseTest {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
     }
 
-    protected void screenshot(Scenario scenario) {
-        String img;
-        scenario.attach((img = getScreenshotAsBase64(webDriver)), DEFAULT_IMAGE_FORMAT, "ScreenCapture");
-        evidence.getScreenCaptureList().add(img);
+    protected void screenshot() {
+        try {
+            screenshot(null);
+        } catch (IOException e) {
+            e.printStackTrace(System.err);
+        }
+    }
+
+    protected void screenshot(String description) throws IOException {
+        evidence.getScreenCaptureList().add(new ScreenCapture(getScreenshotAsBase64(webDriver), description));
     }
 
     protected void screenshot(String imageName, String directory) {

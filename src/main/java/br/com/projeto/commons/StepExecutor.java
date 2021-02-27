@@ -51,12 +51,12 @@ public class StepExecutor extends BaseTest {
             /* * * * * * * * * * * * * *
              * Caso ocorra uma exceção *
              * * * * * * * * * * * * * */
-            setError(ex.getCause(), webDriver);
+//            setError(ex.getCause(), webDriver);
         } catch (AssertionError ae) {
             /* * * * * * * * * * * * * * * * * *
              * Caso falhe a validação do step. *
              * * * * * * * * * * * * * * * * * */
-            setError(ae, webDriver);
+//            setError(ae, webDriver);
         }
         return ret;
     }

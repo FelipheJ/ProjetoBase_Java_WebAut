@@ -35,7 +35,8 @@ public class TestCaseListener implements EventListener {
         TestCase testCase = event.getTestCase();
         System.out.println("Finished " + testCase.getName());
         if (result.getStatus() == Status.FAILED) {
-
+            System.err.println("Failed " + testCase.getName());
+            result.getError().printStackTrace(System.err);
         }
     }
 }

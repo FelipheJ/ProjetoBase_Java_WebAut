@@ -14,7 +14,8 @@ import io.cucumber.junit.CucumberOptions;
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         plugin = {
                 "pretty",
-                "json:target/cucumber.json"
+                "json:target/cucumber.json",
+                "br.com.projeto.configuration.listeners.TestCaseListener"
         },
         features = "./src/test/resources/features/web",
         glue = {
