@@ -1,6 +1,7 @@
 .git/*
 .idea/*
 target/*
+evidence/*
 evidence/Failed/*
 evidence/Passed/*
 
