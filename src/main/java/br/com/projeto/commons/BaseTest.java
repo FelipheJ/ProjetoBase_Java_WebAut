@@ -13,6 +13,8 @@ import br.com.projeto.evidence.model.Evidence;
 import br.com.projeto.evidence.model.ScreenCapture;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static br.com.projeto.commons.Utils.DataUtils.obterDataAtual;
+
 public class BaseTest {
 
     /* Atributos da evidência */
@@ -51,7 +53,7 @@ public class BaseTest {
     }
 
     protected void screenshot(String description) throws IOException {
-        evidence.getScreenCaptureList().add(new ScreenCapture(getScreenshotAsBase64(webDriver), description));
+        evidence.getScreenCaptureList().add(new ScreenCapture(getScreenshotAsBase64(webDriver), description, obterDataAtual()));
     }
 
     protected void screenshot(String imageName, String directory) {

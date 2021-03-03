@@ -8,8 +8,9 @@ public class Parameters extends BaseTest {
 
     public void estouExecutandoOTeste(DataTable parameters) {
         for (Map<Object, Object> map : parameters.asMaps(String.class, String.class)) {
-            evidence.setProjectName((String) map.get("Projeto"));
-            evidence.setTestNumber((String) map.get("Número CT"));
+            evidence.setSystemName((String) map.get("Sistema"));
+            evidence.setSystemVersion((String) map.get("Versão"));
+            evidence.setTestId((String) map.get("Número CT"));
             evidence.setTestName((String) map.get("Nome CT"));
             evidence.setTesterName((String) map.get("Executor"));
             evidence.setTestCycle((String) map.get("Sprint"));

@@ -34,7 +34,17 @@ public class Utils {
          * @return a Date object.
          */
         public static String obterDataAtual(String formato) {
-            return new SimpleDateFormat(formato).format(obterDataAtual());
+            return formatarData(obterDataAtual(), formato);
+        }
+
+        /**
+         * This method formats a specified date to the specified pattern date.
+         * @param data the date.
+         * @param formato the format.
+         * @return a string containing formatted date.
+         */
+        public static String formatarData(Date data, String formato) {
+            return new SimpleDateFormat(formato).format(data);
         }
     }
 

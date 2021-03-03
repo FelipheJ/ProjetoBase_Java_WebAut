@@ -24,6 +24,6 @@ import io.cucumber.junit.CucumberOptions;
                 "br.com.projeto.commons",
                 "br.com.projeto.bean"
         },
-        tags = "@CT-001")
+        tags = "@chrome")
 public class RunTest {
 }
