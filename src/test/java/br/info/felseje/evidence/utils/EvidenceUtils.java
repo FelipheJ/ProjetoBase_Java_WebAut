@@ -2,13 +2,11 @@ package br.info.felseje.evidence.utils;
 
 import java.util.Arrays;
 import java.io.IOException;
-import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
 import br.info.felseje.commons.Path;
 import br.info.felseje.commons.Utils.DataUtils;
 import br.info.felseje.evidence.model.Evidence;
@@ -46,7 +44,7 @@ public class EvidenceUtils {
         }
     }
 
-    private static void fillDocument( Document document,  final Evidence evidence) throws DocumentException, IOException {
+    private static void fillDocument(Document document,  final Evidence evidence) throws DocumentException, IOException {
         Image image;
         Paragraph paragraph;
         for (ScreenCapture sc : evidence.getScreenCaptureList()) {
@@ -102,7 +100,7 @@ public class EvidenceUtils {
                 cell6 = new PdfPCell(new Phrase(evidence.getTesterName())),
                 cell7;
 
-        if (evidence.getTestStatus().toLowerCase().equals("passed")) {
+        if (evidence.getTestStatus().equalsIgnoreCase("passed")) {
             cell7 = new PdfPCell(new Phrase(evidence.getTestStatus(), passed));
         } else {
             cell7 = new PdfPCell(new Phrase(evidence.getTestStatus(), failed));
@@ -131,8 +129,6 @@ public class EvidenceUtils {
     }
 
     private static Document createDocument(final String pdfFileName) throws DocumentException, FileNotFoundException {
-        Document doc = new Document(PageSize.A4, 10, 10, 10, 10);
-        PdfWriter.getInstance(doc, new FileOutputStream(pdfFileName));
-        return doc;
+        return PDFCreator.getDocument(pdfFileName);
     }
 }
