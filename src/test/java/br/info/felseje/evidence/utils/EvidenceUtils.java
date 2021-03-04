@@ -11,6 +11,9 @@ import br.info.felseje.commons.Path;
 import br.info.felseje.commons.Utils.DataUtils;
 import br.info.felseje.evidence.model.Evidence;
 import br.info.felseje.evidence.model.ScreenCapture;
+import br.info.felseje.evidence.enums.TableWidthImpl;
+
+import static br.info.felseje.evidence.utils.PDFCreator.*;
 
 public class EvidenceUtils {
 
@@ -45,90 +48,55 @@ public class EvidenceUtils {
     }
 
     private static void fillDocument(Document document,  final Evidence evidence) throws DocumentException, IOException {
-        Image image;
         Paragraph paragraph;
         for (ScreenCapture sc : evidence.getScreenCaptureList()) {
             document.newPage();
-            image = Image.getInstance(sc.toByteArray());
-            image.scaleToFit(500, 400);
-            image.setAlignment(Image.ALIGN_CENTER);
-            paragraph = new Paragraph(Chunk.NEWLINE);
-            document.add(paragraph);
-            document.add(image);
-            paragraph = new Paragraph(new Phrase("Captura de tela, " + DataUtils.formatarData(sc.getTimestamp(), "dd/MM/yyyy, hh:mm:ss"), new Font(Font.FontFamily.UNDEFINED, 10)));
-            paragraph.setAlignment(Element.ALIGN_CENTER);
+            document.add(getNewLine());
+            document.add(setImageAdjustment(Image.getInstance(sc.toByteArray())));
+            paragraph = getParagraph("Captura de tela, " + DataUtils.formatarData(sc.getTimestamp(), "dd/MM/yyyy, hh:mm:ss"), getFont(10));
+            setParagraphAlignment(paragraph, 1);
             document.add(paragraph);
         }
     }
 
     private static void createHeader(final Document document,  final Evidence evidence) throws DocumentException {
-        PdfPTable table1 = new PdfPTable(new float[] { 70f }),
-                table2 = new PdfPTable(new float[] { 10f, 25f, 10f, 25f }),
-                table3 = new PdfPTable(new float[] { 10f, 60f }),
-                table4 = new PdfPTable(new float[] { 10f, 25f, 10f, 25f }),
-                table5 = new PdfPTable(new float[] { 10f, 25f, 10f, 25f });
-        PdfPCell cellTitle = new PdfPCell(new Phrase("Evidências de teste")),
-                cellSystemName = new PdfPCell(new Phrase("Sistema")),
-                cellSystemVersion = new PdfPCell(new Phrase("Versão")),
-                cellTestName = new PdfPCell(new Phrase("Teste")),
-                cellTestNumber = new PdfPCell(new Phrase("ID")),
-                cellTestCycle = new PdfPCell(new Phrase("Ciclo")),
-                cellTesterName = new PdfPCell(new Phrase("Executor")),
-                cellTestStatus = new PdfPCell(new Phrase("Situação"));
         Font failed = new Font(Font.FontFamily.UNDEFINED),
                 passed = new Font(Font.FontFamily.UNDEFINED);
-
+        PdfPTable table1 = getTable(TableWidthImpl.ONE_WIDTH),
+                table2 = getTable(TableWidthImpl.FOUR_WIDTH),
+                table3 = getTable(TableWidthImpl.TWO_WIDTH),
+                table4 = getTable(TableWidthImpl.FOUR_WIDTH),
+                table5 = getTable(TableWidthImpl.FOUR_WIDTH);
+        PdfPCell cellTitle = getCell("Evidências de teste"),
+                cellSystemName = getCell("Sistema"),
+                cellSystemVersion = getCell("Versão"),
+                cellTestName = getCell("Teste"),
+                cellTestNumber = getCell("ID"),
+                cellTestCycle = getCell("Ciclo"),
+                cellTesterName = getCell("Executor"),
+                cellTestStatus = getCell("Situação"),
+                cell1 = getCell(evidence.getSystemName()),
+                cell2 = getCell(evidence.getSystemVersion()),
+                cell3 = getCell(evidence.getTestName()),
+                cell4 = getCell(evidence.getTestId()),
+                cell5 = getCell(evidence.getTestCycle()),
+                cell6 = getCell(evidence.getTesterName()),
+                cell7;
         failed.setColor(BaseColor.RED);
         passed.setColor(BaseColor.GREEN);
-        cellTitle.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cellSystemName.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cellSystemVersion.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cellTestName.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cellTestNumber.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cellTestCycle.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cellTesterName.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cellTestStatus.setHorizontalAlignment(Element.ALIGN_CENTER);
-
-        Arrays.asList(cellTitle, cellSystemName, cellSystemVersion, cellTestName, cellTestNumber, cellTestCycle, cellTesterName, cellTestStatus)
-                .forEach(c -> c.setBackgroundColor(new BaseColor(210, 210, 210)));
-
-        PdfPCell cell1 = new PdfPCell(new Phrase(evidence.getSystemName())),
-                cell2 = new PdfPCell(new Phrase(evidence.getSystemVersion())),
-                cell3 = new PdfPCell(new Phrase(evidence.getTestName())),
-                cell4 = new PdfPCell(new Phrase(evidence.getTestId())),
-                cell5 = new PdfPCell(new Phrase(evidence.getTestCycle())),
-                cell6 = new PdfPCell(new Phrase(evidence.getTesterName())),
-                cell7;
-
+        setCellHorizontalAlignment(Arrays.asList(cellTitle, cellSystemName, cellSystemVersion, cellTestName, cellTestNumber, cellTestCycle, cellTesterName, cellTestStatus), 1);
+        setCellBackgroundColor(Arrays.asList(cellTitle, cellSystemName, cellSystemVersion, cellTestName, cellTestNumber, cellTestCycle, cellTesterName, cellTestStatus), new BaseColor(210, 210, 210));
         if (evidence.getTestStatus().equalsIgnoreCase("passed")) {
-            cell7 = new PdfPCell(new Phrase(evidence.getTestStatus(), passed));
+            cell7 = getCell(evidence.getTestStatus(), passed);
         } else {
-            cell7 = new PdfPCell(new Phrase(evidence.getTestStatus(), failed));
+            cell7 = getCell(evidence.getTestStatus(), failed);
         }
-
-        Arrays.asList(cell1, cell2, cell3, cell4, cell5, cell6, cell7).forEach(c -> c.setHorizontalAlignment(Element.ALIGN_CENTER));
-        table1.addCell(cellTitle);
-        table2.addCell(cellSystemName);
-        table2.addCell(cell1);
-        table2.addCell(cellSystemVersion);
-        table2.addCell(cell2);
-        table3.addCell(cellTestName);
-        table3.addCell(cell3);
-        table4.addCell(cellTestNumber);
-        table4.addCell(cell4);
-        table4.addCell(cellTestCycle);
-        table4.addCell(cell5);
-        table5.addCell(cellTesterName);
-        table5.addCell(cell6);
-        table5.addCell(cellTestStatus);
-        table5.addCell(cell7);
-
-        for (PdfPTable table : Arrays.asList(table1, table2, table3, table4, table5)) {
-            document.add(table);
-        }
+        setCellHorizontalAlignment(Arrays.asList(cell1, cell2, cell3, cell4, cell5, cell6, cell7), 1);
+        insertCell(table1, Arrays.asList(cellTitle, cellSystemName, cell1, cellSystemVersion, cell2, cellTestName, cell3, cellTestNumber, cell4, cellTestCycle, cell5, cellTesterName, cell6, cellTestStatus, cell7));
+        insertTable(document, Arrays.asList(table1, table2, table3, table4, table5));
     }
 
     private static Document createDocument(final String pdfFileName) throws DocumentException, FileNotFoundException {
-        return PDFCreator.getDocument(pdfFileName);
+        return getDocument(pdfFileName);
     }
 }
