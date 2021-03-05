@@ -36,7 +36,8 @@ public class EvidenceUtils {
         String pdfFileName = Path.getEvidencePath(evidence.getTestStatus()) + evidence.getSystemName() + "_" + DataUtils.obterDataAtual(DataUtils.DATAHORA) + ".pdf";
         try {
             createEvidenceFolder(evidence.getTestStatus());
-            (document = createDocument(pdfFileName)).open();
+            document = createDocument(pdfFileName);
+            document.open();
             createHeader(document, evidence);
             fillDocument(document, evidence);
             fillErrorPage(document, evidence);
@@ -55,11 +56,15 @@ public class EvidenceUtils {
 
     private static void fillErrorPage(Document document, Evidence evidence) throws DocumentException {
         PdfPTable table;
-        if (evidence.getTestError() != null && !evidence.getTestError().isEmpty()) {
+        if (evidence.getTestError() != null) {
             document.newPage();
-            table = PDFCreator.getTable(TableWidthImpl.ONE_WIDTH);
-            PDFCreator.insertCell(table, Arrays.asList(setCellBackgroundColor(PDFCreator.setCellHorizontalAlignment(getCell("Detalhes do erro", getFont()), 1), new BaseColor(210, 210, 210)), getCell(evidence.getTestError())));
-            PDFCreator.insertTable(document, table);
+            table = getTable(TableWidthImpl.ERROR_TABLE_WIDTH);
+            insertCell(table, Arrays.asList(setCellBackgroundColor(setCellHorizontalAlignment(getCell("Erro", getFont()), 1), new BaseColor(210, 210, 210)),
+                            setCellBackgroundColor(setCellHorizontalAlignment(getCell("Detalhes", getFont()), 1), new BaseColor(210, 210, 210)),
+                            setCellHorizontalAlignment(getCell(evidence.getTestError().getClass().getSimpleName()), 1),
+                            setCellHorizontalAlignment(getCell(evidence.getTestError().toString()), 1))
+            );
+            insertTable(document, table);
         }
     }
 

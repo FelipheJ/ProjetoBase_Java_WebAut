@@ -1,13 +1,13 @@
 package br.info.felseje.evidence.utils;
 
-import br.info.felseje.evidence.interfaces.TableWidth;
+import java.util.List;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.io.FileOutputStream;
-import java.io.FileNotFoundException;
-import java.util.List;
+import br.info.felseje.evidence.interfaces.TableWidth;
 
 /**
  * @author Feliphe Jesus
@@ -32,7 +32,7 @@ public class PDFCreator {
     public static void insertTable(Document document, PdfPTable table) throws DocumentException {
         if (document.isOpen()) {
             document.add(table);
-        } throw new DocumentException("Document needs be open to insert table.");
+        } else throw new DocumentException("Document needs be open to insert table.");
     }
 
     public static void insertTable(Document document, List<PdfPTable> tableList) throws DocumentException {

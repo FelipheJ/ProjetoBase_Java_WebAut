@@ -1,6 +1,6 @@
 package br.info.felseje.configuration.listeners;
 
-import io.cucumber.plugin.event.Result;
+import java.util.Arrays;
 import io.cucumber.plugin.event.Status;
 import io.cucumber.plugin.EventListener;
 import io.cucumber.plugin.event.TestCase;
@@ -37,7 +37,7 @@ public class TestCaseListener extends BaseTest implements EventListener {
         Throwable error = event.getResult().getError();
         System.out.println("Generating evidence file for scenario: " + testCase.getName());
         if (status == Status.FAILED) {
-            evidence.setTestError(error.toString());
+            evidence.setTestError(error);
         }
         if (status == Status.FAILED || status == Status.PASSED) {
             EvidenceUtils.generateEvidenceReport(evidence);

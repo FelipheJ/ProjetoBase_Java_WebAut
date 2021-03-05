@@ -34,6 +34,9 @@ public class CommonSteps {
 
     @Então("visualizo o site {string} na lista de resultados")
     public void visualizoOSiteNaListaDeResultados(String site) {
-        assertTrue(commonFunc.visualizarSite(site));
+        assertTrue(
+                "O site " + site + " não estava visível na lista de resultados.",
+                commonFunc.visualizarSite(site)
+        );
     }
 }

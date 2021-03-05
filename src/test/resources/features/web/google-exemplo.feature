@@ -9,7 +9,7 @@ Funcionalidade: Teste de execução do site https://www.google.com.br
     Dado que acesso o site "https://www.google.com.br"
 
   @chrome @CT-001
-  Cenario: Cenário qualquer
+  Cenario: Cenário ok
     E estou executando o teste
       | Sistema | Número CT | Nome CT                   | Executor | Sprint   |
       | Google  | CT-001    | Validar barra de pesquisa | F. Jesus | Sprint 1 |
@@ -18,7 +18,7 @@ Funcionalidade: Teste de execução do site https://www.google.com.br
     Então visualizo o site "GitHub" na lista de resultados
 
   @chrome @CT-002
-  Cenario: Cenário qualquer
+  Cenario: Cenário com falha
     E estou executando o teste
       | Sistema | Número CT | Nome CT                   | Executor | Sprint   |
       | Google  | CT-001    | Validar barra de pesquisa | F. Jesus | Sprint 1 |

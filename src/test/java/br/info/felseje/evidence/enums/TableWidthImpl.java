@@ -28,5 +28,12 @@ public enum TableWidthImpl implements TableWidth {
         public PdfPTable getWidth() {
             return new PdfPTable(new float[] { 10f, 25f, 10f, 25f });
         }
+    },
+
+    ERROR_TABLE_WIDTH {
+        @Override
+        public PdfPTable getWidth() {
+            return new PdfPTable(new float[] { 20f, 50f });
+        }
     }
 }

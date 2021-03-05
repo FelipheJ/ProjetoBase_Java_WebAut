@@ -42,7 +42,7 @@ public class Evidence {
     private String testDate;        /* TestExecutionDate    */
     private String testCycle;       /* CycleNumber          */
     private Status testStatus;      /* TestStatus           */
-    private String testError;       /* TestError (if exists)*/
+    private Throwable testError;       /* TestError (if exists)*/
     private List<ScreenCapture> screenCaptureList = new ArrayList<>();
 
     public String getSystemName() {
@@ -117,11 +117,11 @@ public class Evidence {
         return this;
     }
 
-    public String getTestError() {
+    public Throwable getTestError() {
         return testError;
     }
 
-    public Evidence setTestError(String testError) {
+    public Evidence setTestError(Throwable testError) {
         this.testError = testError;
         return this;
     }

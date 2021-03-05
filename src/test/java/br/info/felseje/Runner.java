@@ -23,6 +23,6 @@ import io.cucumber.junit.CucumberOptions;
                 "br.info.felseje.configuration",
                 "br.info.felseje.commons"
         },
-        tags = "@chrome")
+        tags = "@CT-002")
 public class Runner {
 }
