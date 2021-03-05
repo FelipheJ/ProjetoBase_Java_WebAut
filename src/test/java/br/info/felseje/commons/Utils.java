@@ -1,5 +1,7 @@
 package br.info.felseje.commons;
 
+import org.apache.commons.io.FileUtils;
+
 import java.awt.*;
 import java.io.File;
 import java.util.Date;
@@ -90,6 +92,19 @@ public class Utils {
                 ioException.printStackTrace(System.err);
             }
             return r;
+        }
+    }
+
+    public static class FileUtils {
+
+        public static boolean createIfNotExists(String path) throws SecurityException {
+            File file = new File(path);
+            if (!file.exists()) {
+               if (!file.mkdir()) {
+                   return file.mkdirs();
+               }
+            }
+            return true;
         }
     }
 }

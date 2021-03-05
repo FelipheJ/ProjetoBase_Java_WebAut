@@ -7,9 +7,10 @@ import io.cucumber.plugin.event.TestCase;
 import io.cucumber.plugin.event.EventPublisher;
 import io.cucumber.plugin.event.TestCaseStarted;
 import io.cucumber.plugin.event.TestCaseFinished;
+import br.info.felseje.commons.BaseTest;
+import br.info.felseje.evidence.utils.EvidenceUtils;
 
-
-public class TestCaseListener implements EventListener {
+public class TestCaseListener extends BaseTest implements EventListener {
 
     @Override
     public void setEventPublisher(final EventPublisher evtPublisher) {
@@ -31,12 +32,17 @@ public class TestCaseListener implements EventListener {
      * @param event the event.
      */
     private void onTestCaseFinished(final TestCaseFinished event) {
-        Result result = event.getResult();
         TestCase testCase = event.getTestCase();
-        System.out.println("Finished " + testCase.getName());
-        if (result.getStatus() == Status.FAILED) {
-            System.err.println("Failed " + testCase.getName());
-            result.getError().printStackTrace(System.err);
+        Status status = event.getResult().getStatus();
+        Throwable error = event.getResult().getError();
+        System.out.println("Generating evidence file for scenario: " + testCase.getName());
+        if (status == Status.FAILED) {
+            evidence.setTestError(error.toString());
+        }
+        if (status == Status.FAILED || status == Status.PASSED) {
+            EvidenceUtils.generateEvidenceReport(evidence);
+        } else {
+            System.err.println("Evidence files has not been generated to status " + status);
         }
     }
 }

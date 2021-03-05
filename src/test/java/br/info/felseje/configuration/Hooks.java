@@ -1,6 +1,5 @@
 package br.info.felseje.configuration;
 
-import br.info.felseje.evidence.utils.EvidenceUtils;
 import br.info.felseje.commons.exceptions.NoSuchAnnotationException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -46,8 +45,7 @@ public class Hooks extends BaseTest {
 
     @After(value = "@evidence", order = 1)
     public void afterEvidenceAnnotation(Scenario scenario) {
-        System.out.println("Generating evidence file for scenario: " + scenario.getName());
-        evidence.setTestStatus(scenario.getStatus().name());
-        EvidenceUtils.generateEvidenceReport(evidence);
+        System.out.println("Finished " + scenario.getName());
+        evidence.setTestStatus(scenario.getStatus());
     }
 }

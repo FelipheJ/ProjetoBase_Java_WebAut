@@ -1,5 +1,7 @@
 package br.info.felseje.evidence.model;
 
+import io.cucumber.java.Status;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -20,7 +22,7 @@ public class Evidence {
         this.screenCaptureList = e.screenCaptureList;
     }
 
-    public Evidence(String systemName, String systemVersion, String testId, String testName, String testerName, String testDate, String testCycle, String testStatus, List<ScreenCapture> screenCaptureList) {
+    public Evidence(String systemName, String systemVersion, String testId, String testName, String testerName, String testDate, String testCycle, Status testStatus, List<ScreenCapture> screenCaptureList) {
         this.systemName = systemName;
         this.systemVersion = systemVersion;
         this.testId = testId;
@@ -39,7 +41,8 @@ public class Evidence {
     private String testerName;      /* ExecutorName         */
     private String testDate;        /* TestExecutionDate    */
     private String testCycle;       /* CycleNumber          */
-    private String testStatus;      /* TestStatus           */
+    private Status testStatus;      /* TestStatus           */
+    private String testError;       /* TestError (if exists)*/
     private List<ScreenCapture> screenCaptureList = new ArrayList<>();
 
     public String getSystemName() {
@@ -105,12 +108,21 @@ public class Evidence {
         return this;
     }
 
-    public String getTestStatus() {
+    public Status getTestStatus() {
         return testStatus;
     }
 
-    public Evidence setTestStatus(String testStatus) {
+    public Evidence setTestStatus(Status testStatus) {
         this.testStatus = testStatus;
+        return this;
+    }
+
+    public String getTestError() {
+        return testError;
+    }
+
+    public Evidence setTestError(String testError) {
+        this.testError = testError;
         return this;
     }
 

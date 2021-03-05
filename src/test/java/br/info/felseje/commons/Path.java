@@ -1,5 +1,6 @@
 package br.info.felseje.commons;
 
+import io.cucumber.java.Status;
 import br.info.felseje.commons.exceptions.PathNotImplementedException;
 
 public class Path {
@@ -56,4 +57,13 @@ public class Path {
         return System.getProperty("user.dir") + separator() + "evidence" + separator();
     }
 
+    public static String getEvidencePath(Status status) {
+        String folderName;
+        if (status == Status.PASSED) {
+            folderName = "Passed";
+        } else if (status == Status.FAILED) {
+            folderName = "Failed";
+        } else throw new IllegalArgumentException("Not recognized status " + status.name());
+        return System.getProperty("user.dir") + separator() + "evidence" + separator() + folderName + separator();
+    }
 }

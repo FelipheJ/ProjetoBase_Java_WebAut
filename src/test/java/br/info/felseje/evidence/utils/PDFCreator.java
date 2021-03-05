@@ -49,32 +49,36 @@ public class PDFCreator {
         cellList.forEach(cell -> insertCell(table, cell));
     }
 
-    public static void setCellHorizontalAlignment(PdfPCell cell, int alignment) {
+    public static PdfPCell setCellHorizontalAlignment(PdfPCell cell, int alignment) {
         cell.setHorizontalAlignment(alignment);
+        return cell;
     }
 
     public static void setCellHorizontalAlignment(List<PdfPCell> cellList, int alignment) {
         cellList.forEach(cell -> setCellHorizontalAlignment(cell, alignment));
     }
 
-    public static void setCellVerticalAlignment(PdfPCell cell, int alignment) {
+    public static PdfPCell setCellVerticalAlignment(PdfPCell cell, int alignment) {
         cell.setVerticalAlignment(alignment);
+        return cell;
     }
 
     public static void setCellVerticalAlignment(List<PdfPCell> cellList, int alignment) {
         cellList.forEach(cell -> setCellVerticalAlignment(cell, alignment));
     }
 
-    public static void setCellBackgroundColor(PdfPCell cell, BaseColor color) {
+    public static PdfPCell setCellBackgroundColor(PdfPCell cell, BaseColor color) {
         cell.setBackgroundColor(color);
+        return cell;
     }
 
     public static void setCellBackgroundColor(List<PdfPCell> cellList, BaseColor color) {
         cellList.forEach(cell -> setCellBackgroundColor(cell, color));
     }
 
-    public static void setParagraphAlignment(Paragraph paragraph, int alignment) {
+    public static Paragraph setParagraphAlignment(Paragraph paragraph, int alignment) {
         paragraph.setAlignment(alignment);
+        return paragraph;
     }
 
     public static Font getFont() {
