@@ -1,21 +1,28 @@
 package br.info.felseje.commons;
 
-import org.apache.commons.io.FileUtils;
-
-import java.awt.*;
 import java.io.File;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Calendar;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.text.SimpleDateFormat;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.util.Objects;
 
+/**
+ * Useful classes.
+ * @author Feliphe Jesus
+ * @version 1.0.0
+ */
 public class Utils {
 
-    public static class DataUtils {
+    /**
+     * Useful class for date manipulation.
+     * @author Feliphe Jesus
+     * @version 1.0.0
+     */
+    public static class DateUtils {
 
         public static final String HORA = "HHmmss";
         public static final String DATA = "ddMMyyyy";
@@ -50,6 +57,11 @@ public class Utils {
         }
     }
 
+    /**
+     * Useful class for image manipulation.
+     * @author Feliphe Jesus
+     * @version 1.0.0
+     */
     public static class ImageUtils {
 
         /**
@@ -95,6 +107,11 @@ public class Utils {
         }
     }
 
+    /**
+     * Useful class for file manipulation.
+     * @author Feliphe Jesus
+     * @version 1.0.0
+     */
     public static class FileUtils {
 
         public static boolean createIfNotExists(String path) throws SecurityException {

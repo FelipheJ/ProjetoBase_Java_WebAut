@@ -1,8 +1,13 @@
 package br.info.felseje.commons;
 
 import io.cucumber.java.Status;
-import br.info.felseje.commons.exceptions.PathNotImplementedException;
+import br.info.felseje.exceptions.PathNotImplementedException;
 
+/**
+ * Path utils.
+ * @author Feliphe Jesus
+ * @version 1.0.0
+ */
 public class Path {
 
     private static final String IE_PATH;

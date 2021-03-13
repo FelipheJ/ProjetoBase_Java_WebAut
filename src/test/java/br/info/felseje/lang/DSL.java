@@ -1,4 +1,4 @@
-package br.info.felseje.commons;
+package br.info.felseje.lang;
 
 import java.util.List;
 import org.openqa.selenium.*;
@@ -6,6 +6,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+/**
+ * <p>The domain specific language class.</p>
+ * <p>Abstracts commands in a more natural and understandable language.</p>
+ * @author Feliphe Jesus
+ * @version 1.0.0
+ */
 public class DSL {
 
     /* Construtores */

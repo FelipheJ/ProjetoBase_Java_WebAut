@@ -1,76 +1,40 @@
 package br.info.felseje.evidence.model;
 
-import io.cucumber.java.Status;
-
 import java.util.List;
 import java.util.ArrayList;
+import io.cucumber.java.Status;
 
+/**
+ * Class that contains the evidence data.
+ * @author Feliphe Jesus
+ * @version 1.0.0
+ */
 public class Evidence {
 
     public Evidence() {
     }
 
-    public Evidence(Evidence e) {
-        this.systemName = e.systemName;
-        this.systemVersion = e.systemVersion;
-        this.testId = e.testId;
-        this.testName = e.testName;
-        this.testerName = e.testerName;
-        this.testDate = e.testDate;
-        this.testCycle = e.testCycle;
-        this.testStatus = e.testStatus;
-        this.screenCaptureList = e.screenCaptureList;
-    }
-
-    public Evidence(String systemName, String systemVersion, String testId, String testName, String testerName, String testDate, String testCycle, Status testStatus, List<ScreenCapture> screenCaptureList) {
-        this.systemName = systemName;
-        this.systemVersion = systemVersion;
-        this.testId = testId;
+    public Evidence(String testName, String testIdNumber, String testCycle, String testerName, String testRuntime, String testDate, Status testStatus, Throwable testError, List<ScreenCapture> screenCaptureList) {
         this.testName = testName;
-        this.testerName = testerName;
-        this.testDate = testDate;
+        this.testIdNumber = testIdNumber;
         this.testCycle = testCycle;
+        this.testerName = testerName;
+        this.testRuntime = testRuntime;
+        this.testDate = testDate;
         this.testStatus = testStatus;
+        this.testError = testError;
         this.screenCaptureList = screenCaptureList;
     }
 
-    private String systemName;      /* ProjectName          */
-    private String systemVersion;   /* ProjectVersion       */
-    private String testId;          /* TestIDNumber         */
-    private String testName;        /* TestName             */
-    private String testerName;      /* ExecutorName         */
-    private String testDate;        /* TestExecutionDate    */
-    private String testCycle;       /* CycleNumber          */
-    private Status testStatus;      /* TestStatus           */
-    private Throwable testError;       /* TestError (if exists)*/
+    private String testName;
+    private String testIdNumber;
+    private String testCycle;
+    private String testerName;
+    private String testRuntime;
+    private String testDate;
+    private Status testStatus;
+    private Throwable testError;
     private List<ScreenCapture> screenCaptureList = new ArrayList<>();
-
-    public String getSystemName() {
-        return systemName;
-    }
-
-    public Evidence setSystemName(String systemName) {
-        this.systemName = systemName;
-        return this;
-    }
-
-    public String getSystemVersion() {
-        return systemVersion;
-    }
-
-    public Evidence setSystemVersion(String systemVersion) {
-        this.systemVersion = systemVersion;
-        return this;
-    }
-
-    public String getTestId() {
-        return testId;
-    }
-
-    public Evidence setTestId(String testId) {
-        this.testId = testId;
-        return this;
-    }
 
     public String getTestName() {
         return testName;
@@ -78,6 +42,24 @@ public class Evidence {
 
     public Evidence setTestName(String testName) {
         this.testName = testName;
+        return this;
+    }
+
+    public String getTestIdNumber() {
+        return testIdNumber;
+    }
+
+    public Evidence setTestIdNumber(String testIdNumber) {
+        this.testIdNumber = testIdNumber;
+        return this;
+    }
+
+    public String getTestCycle() {
+        return testCycle;
+    }
+
+    public Evidence setTestCycle(String testCycle) {
+        this.testCycle = testCycle;
         return this;
     }
 
@@ -90,21 +72,21 @@ public class Evidence {
         return this;
     }
 
+    public String getTestRuntime() {
+        return testRuntime;
+    }
+
+    public Evidence setTestRuntime(String testRuntime) {
+        this.testRuntime = testRuntime;
+        return this;
+    }
+
     public String getTestDate() {
         return testDate;
     }
 
     public Evidence setTestDate(String testDate) {
         this.testDate = testDate;
-        return this;
-    }
-
-    public String getTestCycle() {
-        return testCycle;
-    }
-
-    public Evidence setTestCycle(String testCycle) {
-        this.testCycle = testCycle;
         return this;
     }
 

@@ -1,7 +1,7 @@
 package br.info.felseje.web.functionalities;
 
 import org.openqa.selenium.Keys;
-import br.info.felseje.commons.DSL;
+import br.info.felseje.lang.DSL;
 import br.info.felseje.commons.BaseTest;
 import br.info.felseje.web.pages.GooglePage;
 

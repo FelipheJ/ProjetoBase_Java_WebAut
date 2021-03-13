@@ -1,5 +1,10 @@
-package br.info.felseje.commons.exceptions;
+package br.info.felseje.exceptions;
 
+/**
+ * Indicates that the annotation was not found
+ * @author Feliphe Jesus
+ * @version 1.0.0
+ */
 public class NoSuchAnnotationException extends RuntimeException {
 
     public NoSuchAnnotationException() {

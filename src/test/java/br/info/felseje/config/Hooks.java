@@ -1,20 +1,25 @@
-package br.info.felseje.configuration;
+package br.info.felseje.config;
 
-import br.info.felseje.commons.exceptions.NoSuchAnnotationException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.AfterStep;
 import br.info.felseje.commons.BaseTest;
+import br.info.felseje.exceptions.NoSuchAnnotationException;
 
+/**
+ * Class that contains the pre-test and post-test actions.
+ * @author Feliphe Jesus
+ * @version 1.0.0
+ */
 public class Hooks extends BaseTest {
 
-    @Before(value = "@evidence", order = 1)
+    @Before(value = "@evidence", order = 0)
     public void beforeEvidenceAnnotation() {
         initializeEvidence();
     }
 
-    @Before(value = "@web", order = 2)
+    @Before(value = "@web", order = 1)
     public void beforeWebAnnotation(Scenario scenario) {
         if (scenario.getSourceTagNames().contains("@chrome")) {
             initializeWebApplication("CHROME");

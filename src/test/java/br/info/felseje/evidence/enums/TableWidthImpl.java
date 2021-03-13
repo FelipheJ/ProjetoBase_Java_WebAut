@@ -4,6 +4,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import br.info.felseje.evidence.interfaces.TableWidth;
 
 /**
+ * Constructs and returns the desired table model.
  * @author Feliphe Jesus
  * @version 1.0.0
  */

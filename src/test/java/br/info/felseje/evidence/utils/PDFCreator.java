@@ -10,6 +10,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import br.info.felseje.evidence.interfaces.TableWidth;
 
 /**
+ * Class that contains methods for creating the document.
  * @author Feliphe Jesus
  * @version 1.0.0
  */
@@ -89,6 +90,14 @@ public class PDFCreator {
         return new Font(Font.FontFamily.UNDEFINED, size);
     }
 
+    public static Font getFont(float size, int style) {
+        return new Font(Font.FontFamily.UNDEFINED, size, style);
+    }
+
+    public static Font getFont(float size, int style, BaseColor color) {
+        return new Font(Font.FontFamily.UNDEFINED, size, style, color);
+    }
+
     public static Phrase getPhrase(String text) {
         return new Phrase(text);
     }
@@ -114,12 +123,22 @@ public class PDFCreator {
     }
 
     public static Image setImageAdjustment(Image image) {
-        image.scaleToFit(550, 450);
-        image.setAlignment(Image.ALIGN_CENTER);
+        float x, y;
+        image.scaleToFit(PageSize.A4.getWidth(), PageSize.A4.getHeight());
+        x = (PageSize.A4.getWidth() - image.getScaledWidth()) / 2;
+        y = (PageSize.A4.getHeight() - image.getScaledHeight()) / 2;
+        y += y / 2;
+        image.setAbsolutePosition(x, y);
         return image;
     }
 
     public static Paragraph getNewLine() {
         return new Paragraph(Chunk.NEWLINE);
+    }
+
+    public static Paragraph getNewLine(int lineNumber) {
+        Paragraph paragraph = getParagraph("");
+        paragraph.setSpacingBefore(lineNumber);
+        return paragraph;
     }
 }

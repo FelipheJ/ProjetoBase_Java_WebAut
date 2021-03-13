@@ -1,9 +1,9 @@
 package br.info.felseje.web.steps;
 
-import br.info.felseje.web.functionalities.CommonFuncionalities;
-import br.info.felseje.web.functionalities.evidence.Parameters;
 import io.cucumber.java.pt.*;
 import io.cucumber.datatable.DataTable;
+import br.info.felseje.web.functionalities.evidence.Parameters;
+import br.info.felseje.web.functionalities.CommonFuncionalities;
 
 import static org.junit.Assert.*;
 

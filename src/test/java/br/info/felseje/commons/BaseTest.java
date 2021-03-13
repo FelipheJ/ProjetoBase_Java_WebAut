@@ -7,19 +7,20 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import br.info.felseje.evidence.model.Evidence;
 import br.info.felseje.evidence.model.ScreenCapture;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static br.info.felseje.commons.Utils.DataUtils.obterDataAtual;
+import static br.info.felseje.evidence.utils.EvidenceUtils.getScreenshotAsBase64;
 
+/**
+ * @author Feliphe Jesus
+ * @version 1.0.0
+ */
 public class BaseTest {
 
     /* Atributos da evidência */
     protected static Evidence evidence;
-    private static final String DEFAULT_IMAGE_FORMAT = "png";
 
     /* Atributos do driver */
     protected static WebDriver webDriver;
@@ -40,10 +41,6 @@ public class BaseTest {
         webDriver.quit();
     }
 
-    protected String getScreenshotAsBase64(WebDriver driver) {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
-    }
-
     protected void screenshot() {
         try {
             screenshot(null);
@@ -53,19 +50,6 @@ public class BaseTest {
     }
 
     protected void screenshot(String description) throws IOException {
-        evidence.getScreenCaptureList().add(new ScreenCapture(getScreenshotAsBase64(webDriver), description, obterDataAtual()));
-    }
-
-    protected void screenshot(String imageName, String directory) {
-        Robot robot;
-        BufferedImage image;
-        try {
-            robot = new Robot();
-            Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-            image = robot.createScreenCapture(screen);
-            Utils.ImageUtils.saveImage(image, directory, imageName, DEFAULT_IMAGE_FORMAT);
-        } catch (Exception ex) {
-            ex.printStackTrace(System.err);
-        }
+        evidence.getScreenCaptureList().add(new ScreenCapture(getScreenshotAsBase64(webDriver), description));
     }
 }

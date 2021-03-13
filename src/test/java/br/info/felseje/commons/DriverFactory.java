@@ -16,6 +16,11 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 
+/**
+ * WebDriver builder.
+ * @author Feliphe Jesus
+ * @version 1.0.0
+ */
 public class DriverFactory {
 
     public static WebDriver getDriver(String browserName) {
