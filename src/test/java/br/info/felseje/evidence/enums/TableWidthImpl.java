@@ -3,38 +3,18 @@ package br.info.felseje.evidence.enums;
 import com.itextpdf.text.pdf.PdfPTable;
 import br.info.felseje.evidence.interfaces.TableWidth;
 
-/**
- * Constructs and returns the desired table model.
- * @author Feliphe Jesus
- * @version 1.0.0
- */
 public enum TableWidthImpl implements TableWidth {
 
-    ONE_WIDTH {
+    FIELD_AND_VALUE {
         @Override
         public PdfPTable getWidth() {
-            return new PdfPTable(new float[] { 70f });
+            return new PdfPTable(new float[] {15f, 85f});
         }
     },
-
-    TWO_WIDTH {
+    TWO_FIELDS_TWO_VALUES {
         @Override
         public PdfPTable getWidth() {
-            return new PdfPTable(new float[] { 10f, 60f });
-        }
-    },
-
-    FOUR_WIDTH {
-        @Override
-        public PdfPTable getWidth() {
-            return new PdfPTable(new float[] { 10f, 25f, 10f, 25f });
-        }
-    },
-
-    ERROR_TABLE_WIDTH {
-        @Override
-        public PdfPTable getWidth() {
-            return new PdfPTable(new float[] { 20f, 50f });
+            return new PdfPTable(new float[] {15f, 85f, 15f, 85f});
         }
     }
 }

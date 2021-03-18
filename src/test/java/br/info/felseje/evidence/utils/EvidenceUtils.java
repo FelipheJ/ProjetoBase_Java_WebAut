@@ -1,29 +1,19 @@
 package br.info.felseje.evidence.utils;
 
+import java.util.*;
 import java.awt.*;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.Arrays;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import br.info.felseje.commons.Utils;
-import com.itextpdf.text.Font;
-import io.cucumber.java.Status;
-import com.itextpdf.text.*;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import br.info.felseje.commons.Path;
-import br.info.felseje.commons.Utils.DateUtils;
-import br.info.felseje.commons.Utils.FileUtils;
+import java.util.List;
+
 import br.info.felseje.evidence.model.Evidence;
-import br.info.felseje.evidence.model.ScreenCapture;
-import br.info.felseje.evidence.enums.TableWidthImpl;
+import io.cucumber.java.Status;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import br.info.felseje.commons.Path;
 
-import static br.info.felseje.evidence.utils.PDFCreator.*;
+import static br.info.felseje.commons.Utils.*;
 
 /**
  * Contains useful methods for manipulating evidence.
@@ -46,7 +36,7 @@ public class EvidenceUtils {
             robot = new Robot();
             Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
             image = robot.createScreenCapture(screen);
-            Utils.ImageUtils.saveImage(image, path, imageName, format);
+            ImageUtils.saveImage(image, path, imageName, format);
         } catch (Exception ex) {
             ex.printStackTrace(System.err);
         }
@@ -54,11 +44,36 @@ public class EvidenceUtils {
 
     public static void createEvidenceFolder(Status status) throws SecurityException {
         if (FileUtils.createIfNotExists(Path.getEvidencePath())) {
-            try {
-                FileUtils.createIfNotExists(Path.getEvidencePath(status));
-            } catch (RuntimeException runtimeException) {
-                runtimeException.printStackTrace(System.err);
-            }
+            FileUtils.createIfNotExists(Path.getEvidencePath(status));
         }
+    }
+
+    public static String getEvidencePath(Status status){
+        return Path.getEvidencePath(status);
+    }
+
+    public static Map<String, String> getFieldAndValueMap(Evidence evidence) {
+        Map<String, String> fieldAndValue = new HashMap<>();
+        fieldAndValue.put("Teste", evidence.getTestName());
+        fieldAndValue.put("Número", evidence.getTestIdNumber());
+        fieldAndValue.put("Ciclo", evidence.getTestCycle());
+        fieldAndValue.put("Executor", evidence.getTesterName());
+        fieldAndValue.put("Duração", evidence.getTestRuntime());
+        fieldAndValue.put("Data", evidence.getTestDate());
+        fieldAndValue.put("Situação", evidence.getTestStatus().name());
+        return fieldAndValue;
+    }
+
+    public static List<Map<String, String>> getFieldAndValueList(Evidence evidence) {
+        List<Map<String, String>> list = new ArrayList<>();
+        Map<String, String> map1 = new HashMap<>(), map2 = new HashMap<>();
+        map1.put("Teste", evidence.getTestName());
+        map2.put("Número", evidence.getTestIdNumber());
+        map2.put("Ciclo", evidence.getTestCycle());
+        map2.put("Executor", evidence.getTesterName());
+        map2.put("Duração", evidence.getTestRuntime());
+        map2.put("Data", evidence.getTestDate());
+        map2.put("Situação", evidence.getTestStatus().name());
+        return Arrays.asList(map1, map2);
     }
 }

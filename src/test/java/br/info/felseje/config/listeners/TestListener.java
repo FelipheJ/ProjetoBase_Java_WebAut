@@ -1,5 +1,6 @@
 package br.info.felseje.config.listeners;
 
+import com.itextpdf.text.DocumentException;
 import io.cucumber.plugin.event.Status;
 import io.cucumber.plugin.EventListener;
 import io.cucumber.plugin.event.EventPublisher;
@@ -7,6 +8,8 @@ import io.cucumber.plugin.event.TestCaseStarted;
 import io.cucumber.plugin.event.TestCaseFinished;
 import br.info.felseje.commons.BaseTest;
 import br.info.felseje.evidence.EvidenceFactory;
+
+import java.io.IOException;
 
 /**
  * Captures initialization and completion events of the tests performed.
@@ -42,6 +45,11 @@ public class TestListener extends BaseTest implements EventListener {
         if (status == Status.FAILED) {
             evidence.setTestError(error);
         }
-        EvidenceFactory.build(evidence);
+        try {
+            EvidenceFactory.build(evidence);
+        } catch (DocumentException | IOException e) {
+            System.err.println("Error while generating evidence file for scenario: " + testCase.getName());
+            e.printStackTrace(System.err);
+        }
     }
 }
