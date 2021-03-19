@@ -1,17 +1,14 @@
 package br.info.felseje.evidence.utils;
 
-import java.util.*;
 import java.awt.*;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.List;
-
-import br.info.felseje.evidence.model.Evidence;
 import io.cucumber.java.Status;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import br.info.felseje.commons.Path;
+import br.info.felseje.evidence.model.Evidence;
 
 import static br.info.felseje.commons.Utils.*;
 
@@ -52,28 +49,7 @@ public class EvidenceUtils {
         return Path.getEvidencePath(status);
     }
 
-    public static Map<String, String> getFieldAndValueMap(Evidence evidence) {
-        Map<String, String> fieldAndValue = new HashMap<>();
-        fieldAndValue.put("Teste", evidence.getTestName());
-        fieldAndValue.put("Número", evidence.getTestIdNumber());
-        fieldAndValue.put("Ciclo", evidence.getTestCycle());
-        fieldAndValue.put("Executor", evidence.getTesterName());
-        fieldAndValue.put("Duração", evidence.getTestRuntime());
-        fieldAndValue.put("Data", evidence.getTestDate());
-        fieldAndValue.put("Situação", evidence.getTestStatus().name());
-        return fieldAndValue;
-    }
-
-    public static List<Map<String, String>> getFieldAndValueList(Evidence evidence) {
-        List<Map<String, String>> list = new ArrayList<>();
-        Map<String, String> map1 = new HashMap<>(), map2 = new HashMap<>();
-        map1.put("Teste", evidence.getTestName());
-        map2.put("Número", evidence.getTestIdNumber());
-        map2.put("Ciclo", evidence.getTestCycle());
-        map2.put("Executor", evidence.getTesterName());
-        map2.put("Duração", evidence.getTestRuntime());
-        map2.put("Data", evidence.getTestDate());
-        map2.put("Situação", evidence.getTestStatus().name());
-        return Arrays.asList(map1, map2);
+    public static String getEvidenceFileName(Evidence evidence) {
+        return evidence.getTestIdNumber() + "_" + DateUtils.formatarData(DateUtils.obterDataAtual(), "ddMMyyyy_HHmmss") + ".pdf";
     }
 }

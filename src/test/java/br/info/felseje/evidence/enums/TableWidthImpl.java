@@ -14,7 +14,7 @@ public enum TableWidthImpl implements TableWidth {
     TWO_FIELDS_TWO_VALUES {
         @Override
         public PdfPTable getWidth() {
-            return new PdfPTable(new float[] {15f, 85f, 15f, 85f});
+            return new PdfPTable(new float[] {15f, 35f, 15f, 35f});
         }
     }
 }
