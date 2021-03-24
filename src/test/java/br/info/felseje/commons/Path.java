@@ -16,6 +16,7 @@ public class Path {
     private static final String SAFARI_PATH;
     private static final String CHROME_PATH;
     private static final String FIREFOX_PATH;
+    private static final String TOP_IMAGE_PATH;
 
     static {
         IE_PATH = "drivers" + separator() + "iedriver_390_x64.exe";
@@ -23,7 +24,8 @@ public class Path {
         SAFARI_PATH = separator() + "usr" + separator() + "bin" + separator() + "safaridriver";
         OPERA_PATH = "drivers" + separator() + "operadriver_86_x64.exe";
         FIREFOX_PATH = "drivers" + separator() + "geckodriver_0280_x64.exe";
-        CHROME_PATH = "drivers" + separator() + "chromedriver_87_x32.exe";
+        CHROME_PATH = "drivers" + separator() + "chromedriver_89_x32.exe";
+        TOP_IMAGE_PATH = "config" + separator() + "evidence" + separator() + "top-image.png";
     }
 
     /**
@@ -31,7 +33,7 @@ public class Path {
      * @param browserName name of browser.
      * @return browserPath.
      */
-    public static String get(String browserName) {
+    public static String getBrowserPath(String browserName) {
         switch (browserName.toUpperCase()) {
             case "CHROME":
                 return CHROME_PATH;
@@ -70,5 +72,9 @@ public class Path {
             folderName = "Failed";
         } else throw new IllegalArgumentException("Not recognized status " + status.name());
         return System.getProperty("user.dir") + separator() + "evidence" + separator() + folderName + separator();
+    }
+
+    public static String getTopImagePath() {
+        return TOP_IMAGE_PATH;
     }
 }

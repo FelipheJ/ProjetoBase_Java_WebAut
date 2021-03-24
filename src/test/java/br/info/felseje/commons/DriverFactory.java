@@ -27,26 +27,26 @@ public class DriverFactory {
         WebDriver webDriver;
         switch (browserName.toUpperCase()) {
             case "CHROME":
-                System.setProperty("webdriver.chrome.driver", Path.get(browserName));
+                System.setProperty("webdriver.chrome.driver", Path.getBrowserPath(browserName));
                 webDriver = new ChromeDriver();
                 break;
             case "IE":
-                System.setProperty("webdriver.ie.driver", Path.get(browserName));
+                System.setProperty("webdriver.ie.driver", Path.getBrowserPath(browserName));
                 webDriver = new InternetExplorerDriver();
                 break;
             case "FIREFOX":
-                System.setProperty("webdriver.gecko.driver", Path.get(browserName));
+                System.setProperty("webdriver.gecko.driver", Path.getBrowserPath(browserName));
                 webDriver = new FirefoxDriver();
                 break;
             case "SAFARI":
                 webDriver = new SafariDriver();
                 break;
             case "OPERA":
-                System.setProperty("webdriver.opera.driver", Path.get(browserName));
+                System.setProperty("webdriver.opera.driver", Path.getBrowserPath(browserName));
                 webDriver = new OperaDriver();
                 break;
             case "EDGE":
-                System.setProperty("webdriver.edge.driver", Path.get(browserName));
+                System.setProperty("webdriver.edge.driver", Path.getBrowserPath(browserName));
                 webDriver = new EdgeDriver();
                 break;
             default:
@@ -59,26 +59,26 @@ public class DriverFactory {
         WebDriver webDriver;
         switch (browserName.toUpperCase()) {
             case "CHROME":
-                System.setProperty("webdriver.chrome.driver", Path.get("CHROME"));
+                System.setProperty("webdriver.chrome.driver", Path.getBrowserPath("CHROME"));
                 webDriver = new ChromeDriver((ChromeOptions) capabilities);
                 break;
             case "IE":
-                System.setProperty("webdriver.ie.driver", Path.get("IE"));
+                System.setProperty("webdriver.ie.driver", Path.getBrowserPath("IE"));
                 webDriver = new InternetExplorerDriver((InternetExplorerOptions) capabilities);
                 break;
             case "FIREFOX":
-                System.setProperty("webdriver.gecko.driver", Path.get("FIREFOX"));
+                System.setProperty("webdriver.gecko.driver", Path.getBrowserPath("FIREFOX"));
                 webDriver = new FirefoxDriver((FirefoxOptions) capabilities);
                 break;
             case "SAFARI":
                 webDriver = new SafariDriver((SafariOptions) capabilities);
                 break;
             case "OPERA":
-                System.setProperty("webdriver.opera.driver", Path.get("OPERA"));
+                System.setProperty("webdriver.opera.driver", Path.getBrowserPath("OPERA"));
                 webDriver = new OperaDriver((OperaOptions) capabilities);
                 break;
             case "EDGE":
-                System.setProperty("webdriver.edge.driver", Path.get("EDGE"));
+                System.setProperty("webdriver.edge.driver", Path.getBrowserPath("EDGE"));
                 webDriver = new EdgeDriver((EdgeOptions) capabilities);
                 break;
             default:

@@ -19,8 +19,8 @@
     <h3><b>Navegador</b></h3>
     <p>
         Browser utilizado para os testes: <a href="https://www.google.com/intl/pt-BR/chrome/">Google Chrome</a>
-        <br>Versão do navegador utilizada: 85.0.4183.121 (x64)
-        <br>Versão do webdriver: 85.0.4183.87
+        <br>Versão do navegador utilizada: 89.0.4389.90 (x64)
+        <br>Versão do webdriver: 89.0.4389.23
         <br></br>Baixe <a href="https://chromedriver.chromium.org/downloads">aqui</a> o ChromeDriver
     </p>
 </div>

@@ -1,8 +1,6 @@
 package br.info.felseje.evidence;
 
 import java.util.Map;
-
-import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import br.info.felseje.evidence.interfaces.Table;
 import br.info.felseje.evidence.interfaces.TableWidth;

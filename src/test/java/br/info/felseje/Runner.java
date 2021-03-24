@@ -24,6 +24,6 @@ import io.cucumber.junit.CucumberOptions;
                 "br.info.felseje.commons",
                 "br.info.felseje.web.steps"
         },
-        tags = "@CT-002")
+        tags = "@CT-001")
 public class Runner {
 }

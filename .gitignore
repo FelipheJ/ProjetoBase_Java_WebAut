@@ -1,6 +1,7 @@
 .git/*
 .idea/*
 target/*
+debug.txt
 evidence/*
 evidence/Failed/*
 evidence/Passed/*
