@@ -22,6 +22,7 @@ public class TableBuilder implements Table {
             table.addCell(getParagraph(k, 1));
             table.addCell(v);
         });
+        table.setWidthPercentage(100f);
         return table;
     }
 }

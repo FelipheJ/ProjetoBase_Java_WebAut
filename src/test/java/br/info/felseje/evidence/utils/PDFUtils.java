@@ -20,7 +20,7 @@ import br.info.felseje.evidence.interfaces.Table;
 public class PDFUtils {
 
     public static Document getDocument(String path) throws DocumentException, FileNotFoundException {
-        return getDocument(PageSize.A4, 10f, 10f, 10f, 10f, path);
+        return getDocument(PageSize.A4, 20f, 20f, 0f, 0f, path);
     }
 
     public static Document getDocument(Rectangle pageSize, float marginLeft, float marginRight, float marginTop, float marginBottom, String path) throws DocumentException, FileNotFoundException {

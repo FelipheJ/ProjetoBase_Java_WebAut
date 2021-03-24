@@ -39,6 +39,9 @@ public class EvidenceFactory {
     public static void build(Evidence evidence) throws DocumentException, IOException {
         createEvidenceFolder(evidence.getTestStatus());
         document = getDocument(getEvidencePath(evidence.getTestStatus()) + getEvidenceFileName(evidence));
+        document.addTitle(evidence.getTestName());
+        document.addAuthor(evidence.getTesterName());
+        document.addSubject("Evidência de execução de testes automatizados");
         document.open();
         insertScreenshots(evidence);
         document.close();
@@ -48,34 +51,26 @@ public class EvidenceFactory {
         PdfPTable table1, table2;
         table1 = getTable(TableWidthImpl.FIELD_AND_VALUE, getFieldAndValueList(evidence, 1));
         table2 = getTable(TableWidthImpl.TWO_FIELDS_TWO_VALUES, getFieldAndValueList(evidence, 2));
-        table2.setSpacingAfter(80f);
+        document.add(Chunk.NEWLINE.setLineHeight(40f));
         document.add(table1);
         document.add(table2);
-    }
-
-    private static void insertTopImage() throws DocumentException, IOException {
-        Image image = Image.getInstance(Path.getTopImagePath());
-        image.scaleToFit(PageSize.A4);
-        image.setAlignment(Image.ALIGN_CENTER);
-        image.setSpacingBefore(30f);
-        document.add(image);
+        document.add(Chunk.NEWLINE.setLineHeight(100f));
     }
 
     private static void insertScreenshots(Evidence evidence) throws DocumentException, IOException {
         Image image;
         Paragraph paragraph;
         for (ScreenCapture sc : evidence.getScreenCaptureList()) {
-            insertTopImage();
+            document.newPage();
             createHeader(evidence);
             image = Image.getInstance(sc.toByteArray());
             image.setAlignment(Image.ALIGN_CENTER);
-            image.scaleToFit(PageSize.A4.getWidth() - 20f, PageSize.A4.getHeight());
+            image.scaleToFit(PageSize.A4.getWidth() - 40f, PageSize.A4.getHeight());
             paragraph = getParagraph("Captura de tela:");
             paragraph.setExtraParagraphSpace(20f);
             paragraph.setSpacingAfter(20f);
             document.add(paragraph);
             document.add(image);
-            document.newPage();
         }
     }
 
