@@ -1,7 +1,13 @@
 package br.info.felseje.commons;
 
+import java.io.IOException;
+
+import br.info.felseje.exceptions.PathException;
 import io.cucumber.java.Status;
+import br.info.felseje.exceptions.PathNotFoundException;
 import br.info.felseje.exceptions.PathNotImplementedException;
+
+import static br.info.felseje.commons.Utils.FileUtils.*;
 
 /**
  * Path utils.
@@ -10,47 +16,19 @@ import br.info.felseje.exceptions.PathNotImplementedException;
  */
 public class Path {
 
-    private static final String IE_PATH;
-    private static final String EDGE_PATH;
-    private static final String OPERA_PATH;
-    private static final String SAFARI_PATH;
-    private static final String CHROME_PATH;
-    private static final String FIREFOX_PATH;
     private static final String TOP_IMAGE_PATH;
+    private static final String PROPERTIES_FILE;
 
     static {
-        IE_PATH = "drivers" + separator() + "iedriver_390_x64.exe";
-        EDGE_PATH = "drivers" + separator() + "edgedriver_89_x64.exe";
-        SAFARI_PATH = separator() + "usr" + separator() + "bin" + separator() + "safaridriver";
-        OPERA_PATH = "drivers" + separator() + "operadriver_86_x64.exe";
-        FIREFOX_PATH = "drivers" + separator() + "geckodriver_0280_x64.exe";
-        CHROME_PATH = "drivers" + separator() + "chromedriver_89_x32.exe";
         TOP_IMAGE_PATH = "config" + separator() + "evidence" + separator() + "top-image.png";
+        PROPERTIES_FILE = userdir() + separator() + "config" + separator() + "webdrivers.properties";
     }
 
     /**
-     * Obtains the path of specified browser (if it is already implemented).
-     * @param browserName name of browser.
-     * @return browserPath.
+     *
+     * @return the path to current directory.
      */
-    public static String getBrowserPath(String browserName) {
-        switch (browserName.toUpperCase()) {
-            case "CHROME":
-                return CHROME_PATH;
-            case "IE":
-                return IE_PATH;
-            case "FIREFOX":
-                return FIREFOX_PATH;
-            case "SAFARI":
-                return SAFARI_PATH;
-            case "OPERA":
-                return OPERA_PATH;
-            case "EDGE":
-                return EDGE_PATH;
-            default:
-                throw new PathNotImplementedException("This browserName hasn't yet been implemented.");
-        }
-    }
+    private static String userdir() { return System.getProperty("user.dir"); }
 
     /**
      *
@@ -60,8 +38,36 @@ public class Path {
         return System.getProperty("file.separator");
     }
 
+    /**
+     * Obtains the path of specified browser (if it is already implemented).
+     * @param browserName name of browser.
+     * @return browserPath.
+     */
+    public static String getBrowserPath(String browserName) {
+        try {
+            switch (browserName.toUpperCase()) {
+                case "CHROME":
+                    return getProperty(PROPERTIES_FILE, "chrome.path");
+                case "IE":
+                    return getProperty(PROPERTIES_FILE, "ie.path");
+                case "FIREFOX":
+                    return getProperty(PROPERTIES_FILE, "firefox.path");
+                case "SAFARI":
+                    return getProperty(PROPERTIES_FILE, "safari.path");
+                case "OPERA":
+                    return getProperty(PROPERTIES_FILE, "opera.path");
+                case "EDGE":
+                    return getProperty(PROPERTIES_FILE, "edge.path");
+                default:
+                    throw new PathNotImplementedException("This browserName hasn't yet been implemented.");
+            }
+        } catch (IOException ioEx) {
+            throw new PathException("Did you set up the webdriver.properties file?", ioEx);
+        }
+    }
+
     public static String getEvidencePath() {
-        return System.getProperty("user.dir") + separator() + "evidence" + separator();
+        return userdir() + separator() + "evidence" + separator();
     }
 
     public static String getEvidencePath(Status status) {

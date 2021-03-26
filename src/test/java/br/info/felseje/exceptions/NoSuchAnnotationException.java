@@ -19,7 +19,7 @@ public class NoSuchAnnotationException extends RuntimeException {
         super(message);
     }
 
-    public NoSuchAnnotationException(Throwable cause, String message) {
+    public NoSuchAnnotationException(String message, Throwable cause) {
         super(message, cause);
     }
 }

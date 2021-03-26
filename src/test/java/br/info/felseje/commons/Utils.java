@@ -1,14 +1,13 @@
 package br.info.felseje.commons;
 
-import java.io.File;
+import java.io.*;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Calendar;
-import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.text.SimpleDateFormat;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
+import java.util.Properties;
 
 /**
  * Useful classes.
@@ -122,6 +121,18 @@ public class Utils {
                }
             }
             return true;
+        }
+
+        public static String getProperty(String path, String key) throws IOException {
+            Properties properties = new Properties();
+            properties.load(new FileInputStream(path));
+            return properties.getProperty(key);
+        }
+
+        public static String getProperty(String path, String key, String defaultValue) throws IOException {
+            Properties properties = new Properties();
+            properties.load(new FileInputStream(path));
+            return properties.getProperty(key, defaultValue);
         }
     }
 }

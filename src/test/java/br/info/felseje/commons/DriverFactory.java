@@ -1,5 +1,6 @@
 package br.info.felseje.commons;
 
+import br.info.felseje.exceptions.PathNotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -25,28 +26,32 @@ public class DriverFactory {
 
     public static WebDriver getDriver(String browserName) {
         WebDriver webDriver;
+        String path = Path.getBrowserPath(browserName.toUpperCase());
+        if (path == null || path.isEmpty()) {
+            throw new PathNotFoundException("Did you set up the webdriver.properties file?");
+        }
         switch (browserName.toUpperCase()) {
             case "CHROME":
-                System.setProperty("webdriver.chrome.driver", Path.getBrowserPath(browserName));
+                System.setProperty("webdriver.chrome.driver", path);
                 webDriver = new ChromeDriver();
                 break;
             case "IE":
-                System.setProperty("webdriver.ie.driver", Path.getBrowserPath(browserName));
+                System.setProperty("webdriver.ie.driver", path);
                 webDriver = new InternetExplorerDriver();
                 break;
             case "FIREFOX":
-                System.setProperty("webdriver.gecko.driver", Path.getBrowserPath(browserName));
+                System.setProperty("webdriver.gecko.driver", path);
                 webDriver = new FirefoxDriver();
                 break;
             case "SAFARI":
                 webDriver = new SafariDriver();
                 break;
             case "OPERA":
-                System.setProperty("webdriver.opera.driver", Path.getBrowserPath(browserName));
+                System.setProperty("webdriver.opera.driver", path);
                 webDriver = new OperaDriver();
                 break;
             case "EDGE":
-                System.setProperty("webdriver.edge.driver", Path.getBrowserPath(browserName));
+                System.setProperty("webdriver.edge.driver", path);
                 webDriver = new EdgeDriver();
                 break;
             default:

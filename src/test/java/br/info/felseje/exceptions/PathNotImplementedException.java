@@ -5,7 +5,7 @@ package br.info.felseje.exceptions;
  * @author Feliphe Jesus
  * @version 1.0.0
  */
-public class PathNotImplementedException extends RuntimeException {
+public class PathNotImplementedException extends PathException {
 
     public PathNotImplementedException() {
         super();
@@ -19,7 +19,7 @@ public class PathNotImplementedException extends RuntimeException {
         super(message);
     }
 
-    public PathNotImplementedException(Throwable cause, String message) {
+    public PathNotImplementedException(String message, Throwable cause) {
         super(message, cause);
     }
 }

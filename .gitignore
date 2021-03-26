@@ -3,6 +3,4 @@
 target/*
 debug.txt
 evidence/*
-evidence/Failed/*
-evidence/Passed/*
 
