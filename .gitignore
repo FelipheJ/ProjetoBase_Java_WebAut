@@ -1,6 +1,6 @@
 .git/*
 .idea/*
 target/*
-debug.txt
+debug.log
 evidence/*
 
