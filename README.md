@@ -3,7 +3,7 @@
 <div class="corpo_mensagem">
     <p>
         Projeto base para desenvolvimento de scripts de testes automatizados em websites.
-        <br> Utiliza os padrões PageObjects e PageFactory.
+        <br> Utiliza os padrões PageObjects, PageFactory e DriverFactory.
     </p>
     <h3><b>Frameworks</b></h3>
     <p>
